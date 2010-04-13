@@ -8,3 +8,9 @@ All notable changes to this project are documented here.
 
 ### Added
 - `.NET 9` runtime (`runtime/`): loads contracts and validates envelopes
+  outside Python; same finding semantics as the CLI.
+- A2A `task.send` contract example and fixture set.
+- `matrix` cross-checks every envelope against every contract revision.
+
+### Changed
+- Findings are ordered deterministically (path, then rule) across all
