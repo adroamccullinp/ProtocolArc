@@ -20,3 +20,8 @@ All notable changes to this project are documented here.
 
 ### Added
 - Compatibility verdicts: `compatible`, `forward`, `breaking` with the
+  worst-across-fields rule for `diff`.
+- Enum widening/narrowing detection, optional->required tightening.
+
+### Changed
+- Structural errors vs validation findings are now strictly separated: a
