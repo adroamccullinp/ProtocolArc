@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# .NET runtime build artefacts
+runtime/bin/
+runtime/obj/
+
+# OS / editor
+.DS_Store
+Thumbs.beta
+Thumbs.db
+*.swp
+.idea/
