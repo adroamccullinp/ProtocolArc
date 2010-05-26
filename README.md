@@ -1,0 +1,17 @@
+<div align="center">
+
+# ProtocolArc
+
+A contract lab for agent protocol envelopes. Describe an MCP or A2A message shape as a versioned contract, validate real envelopes against it, and classify what changes between revisions as compatible, forward, or breaking.
+
+<img src="docs/assets/banner.svg" alt="ProtocolArc over a revision track marking 1.0.0, 1.1.0, and a breaking jump to 2.0.0" width="100%"/>
+
+`Python 3` standard library · optional `.NET 9` runtime · deterministic output
+
+</div>
+
+## What it is for
+
+Agent systems pass structured envelopes between tools and peers: MCP tool calls, A2A task sends, and similar JSON-RPC shaped messages. When the shape of those messages changes, older clients can break in ways that are hard to see until traffic fails. ProtocolArc turns the envelope shape into an explicit, versioned contract so that:
+
+- an envelope can be checked against the contract it claims to satisfy,
