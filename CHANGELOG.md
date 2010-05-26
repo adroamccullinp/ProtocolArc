@@ -31,3 +31,8 @@ All notable changes to this project are documented here.
 ## [0.3.0] - 2022-11-02
 
 ### Added
+- `FieldSpec` model: dotted paths, accepted types, required flag, enum,
+  strict mode flagging undeclared top-level keys.
+- Contract loading from JSON with schema-shape checks.
+
+## [0.2.0] - 2021-03-19
