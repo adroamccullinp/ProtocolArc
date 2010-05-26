@@ -36,3 +36,9 @@ All notable changes to this project are documented here.
 - Contract loading from JSON with schema-shape checks.
 
 ## [0.2.0] - 2021-03-19
+
+### Added
+- Ordered, severity-carrying findings with machine-stable rule names
+  (`field.type.narrowed`, `revision.hint`, ...).
+- `validate` subcommand with text and JSON output.
+
