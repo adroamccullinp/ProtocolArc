@@ -62,3 +62,13 @@ An envelope declares the `contract` it targets, an optional `revision`, and its 
 ```
 python -m protocolarc <validate|diff|matrix|report|describe> ...
 ```
+
+Exit codes are meaningful: `0` success, `1` validation errors present, `2` breaking compatibility detected by `diff`, `3` a usage or input error.
+
+`validate` checks envelopes against one contract:
+
+```bash
+python -m protocolarc validate \
+  examples/contracts/mcp_tool_call_1.0.0.json \
+  examples/fixtures/mcp_calls.jsonl
+```
