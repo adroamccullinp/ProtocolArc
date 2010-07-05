@@ -72,3 +72,12 @@ python -m protocolarc validate \
   examples/contracts/mcp_tool_call_1.0.0.json \
   examples/fixtures/mcp_calls.jsonl
 ```
+
+```
+[PASS] mcp.tool_call@1.0.0 <- mcp_calls.jsonl:1
+[FAIL] mcp.tool_call@1.0.0 <- mcp_calls.jsonl:3
+    ERROR   field.enum             method: value 'tools/list' not in {'tools/call'}
+```
+
+`diff` compares two revisions and classifies the change:
+
