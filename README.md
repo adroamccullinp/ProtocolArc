@@ -81,3 +81,12 @@ python -m protocolarc validate \
 
 `diff` compares two revisions and classifies the change:
 
+```bash
+python -m protocolarc diff \
+  examples/contracts/mcp_tool_call_1.0.0.json \
+  examples/contracts/mcp_tool_call_2.0.0.json
+```
+
+```
+mcp.tool_call: 1.0.0 -> 2.0.0
+compatibility: BREAKING
