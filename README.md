@@ -90,3 +90,13 @@ python -m protocolarc diff \
 ```
 mcp.tool_call: 1.0.0 -> 2.0.0
 compatibility: BREAKING
+  breaking    field.type.narrowed        id: string|integer -> string
+  breaking    field.required.tightened   params.arguments: optional -> required
+  forward     field.added.optional       params.timeout_ms: added integer
+```
+
+`matrix` cross-validates a set of envelopes against a set of contracts (files or directories):
+
+```bash
+python -m protocolarc matrix \
+  --contracts examples/contracts \
