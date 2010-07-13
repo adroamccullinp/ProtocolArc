@@ -100,3 +100,12 @@ compatibility: BREAKING
 ```bash
 python -m protocolarc matrix \
   --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl examples/fixtures/a2a_tasks.json
+```
+
+`report` renders the same matrix as `markdown` (default), `json`, or `text`, optionally to a file:
+
+```bash
+python -m protocolarc report \
+  --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl \
