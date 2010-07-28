@@ -119,3 +119,12 @@ python -m protocolarc describe examples/contracts/a2a_task_send_1.0.0.json
 ```
 
 ## The .NET runtime
+
+`runtime/` holds `ProtocolArc.Runtime`, a native validator that mirrors the Python `validate` logic so a contract checked by either component yields the same findings. It is meant for hot paths where envelopes stream through a gateway.
+
+```bash
+cd runtime
+dotnet run -- selfcheck
+dotnet run -- validate ../examples/contracts/mcp_tool_call_1.0.0.json ../examples/fixtures/mcp_calls.jsonl --json
+dotnet run -- describe ../examples/contracts/a2a_task_send_1.0.0.json
+```
