@@ -9,3 +9,5 @@ description = "Contract lab for agent protocol envelopes - versioned MCP/A2A mes
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
+authors = [{ name = "ProtocolArc contributors" }]
+keywords = ["mcp", "a2a", "agents", "contracts", "compatibility", "validation"]
