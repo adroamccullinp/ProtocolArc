@@ -7,3 +7,5 @@ name = "protocolarc"
 version = "0.1.0"
 description = "Contract lab for agent protocol envelopes - versioned MCP/A2A message contracts, validation, and compatibility diffs."
 readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
