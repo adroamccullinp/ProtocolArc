@@ -11,3 +11,6 @@ requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "ProtocolArc contributors" }]
 keywords = ["mcp", "a2a", "agents", "contracts", "compatibility", "validation"]
+
+[project.scripts]
+protocolarc = "protocolarc.cli:main"
