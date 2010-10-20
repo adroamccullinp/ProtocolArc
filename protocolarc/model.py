@@ -14,3 +14,14 @@ that repeated runs produce byte-identical output.
 """
 
 from __future__ import annotations
+
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
+
+
+# JSON type names understood by ProtocolArc. These map onto the seven JSON
+# value kinds plus a permissive "any".
+JSON_TYPES = ("string", "integer", "number", "boolean", "object", "array", "null", "any")
+
+
+class ContractError(Exception):
