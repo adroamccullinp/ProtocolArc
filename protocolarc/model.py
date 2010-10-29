@@ -58,3 +58,14 @@ class FieldSpec:
         return "|".join(self.types)
 
 
+@dataclass
+class Contract:
+    """A versioned protocol contract.
+
+    Attributes:
+        name:      Stable protocol identifier, e.g. ``mcp.tool_call``.
+        revision:  Semantic revision string, e.g. ``1.2.0``.
+        kind:      Protocol family label, e.g. ``mcp`` or ``a2a``.
+        title:     Human title for reports.
+        fields:    Ordered list of FieldSpec entries.
+        strict:    When True, fields not listed in the contract are findings.
