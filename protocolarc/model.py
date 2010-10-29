@@ -25,3 +25,14 @@ JSON_TYPES = ("string", "integer", "number", "boolean", "object", "array", "null
 
 
 class ContractError(Exception):
+    """Raised when a contract or envelope document is structurally invalid.
+
+    This is distinct from a *validation* finding: a ContractError means the
+    document could not be understood at all, whereas a validation finding means
+    the document was understood but did not satisfy a contract.
+    """
+
+
+@dataclass(frozen=True)
+class FieldSpec:
+    """Specification for a single field inside a contract.
