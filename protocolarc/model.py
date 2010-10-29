@@ -47,3 +47,14 @@ class FieldSpec:
 
     name: str
     types: Tuple[str, ...]
+    required: bool = True
+    enum: Optional[Tuple[Any, ...]] = None
+    doc: str = ""
+
+    def accepts_type(self, type_name: str) -> bool:
+        return "any" in self.types or type_name in self.types
+
+    def type_label(self) -> str:
+        return "|".join(self.types)
+
+
