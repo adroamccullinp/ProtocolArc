@@ -69,3 +69,15 @@ class Contract:
         title:     Human title for reports.
         fields:    Ordered list of FieldSpec entries.
         strict:    When True, fields not listed in the contract are findings.
+    """
+
+    name: str
+    revision: str
+    kind: str = "generic"
+    title: str = ""
+    fields: List[FieldSpec] = field(default_factory=list)
+    strict: bool = False
+
+    def field_map(self) -> Dict[str, FieldSpec]:
+        return {f.name: f for f in self.fields}
+
