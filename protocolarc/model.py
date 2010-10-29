@@ -36,3 +36,14 @@ class ContractError(Exception):
 @dataclass(frozen=True)
 class FieldSpec:
     """Specification for a single field inside a contract.
+
+    Attributes:
+        name:      Dotted path of the field, e.g. ``payload.tool_name``.
+        types:     Tuple of accepted JSON type names (see ``JSON_TYPES``).
+        required:  Whether the field must be present.
+        enum:      Optional tuple of permitted scalar values.
+        doc:       Human-readable description used in reports.
+    """
+
+    name: str
+    types: Tuple[str, ...]
