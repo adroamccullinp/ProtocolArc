@@ -23,3 +23,13 @@ def _require(doc: Dict[str, Any], key: str, where: str) -> Any:
 def _as_type_tuple(raw: Any, where: str):
     if isinstance(raw, str):
         raw = [raw]
+    if not isinstance(raw, list) or not raw:
+        raise ContractError(f"{where}: 'type' must be a string or non-empty list")
+    types = tuple(str(t) for t in raw)
+    for t in types:
+        if t not in JSON_TYPES:
+            raise ContractError(
+                f"{where}: unknown type '{t}'; expected one of {', '.join(JSON_TYPES)}"
+            )
+    return types
+
