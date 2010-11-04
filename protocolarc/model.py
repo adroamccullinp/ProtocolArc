@@ -103,3 +103,14 @@ class Contract:
         return tuple(parts[:3])
 
     def identity(self) -> str:
+        return f"{self.name}@{self.revision}"
+
+
+@dataclass
+class Envelope:
+    """A concrete protocol message instance.
+
+    Attributes:
+        contract:  The contract name this envelope claims to satisfy.
+        revision:  The contract revision this envelope targets (optional).
+        data:      The raw decoded JSON body of the envelope.
