@@ -13,3 +13,13 @@ from typing import Any, Dict, List
 
 from .model import Contract, Envelope, FieldSpec, ContractError, JSON_TYPES
 
+
+def _require(doc: Dict[str, Any], key: str, where: str) -> Any:
+    if key not in doc:
+        raise ContractError(f"{where}: missing required key '{key}'")
+    return doc[key]
+
+
+def _as_type_tuple(raw: Any, where: str):
+    if isinstance(raw, str):
+        raw = [raw]
