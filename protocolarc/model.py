@@ -81,3 +81,14 @@ class Contract:
     def field_map(self) -> Dict[str, FieldSpec]:
         return {f.name: f for f in self.fields}
 
+    def field_names(self) -> Tuple[str, ...]:
+        return tuple(f.name for f in self.fields)
+
+    def required_names(self) -> Tuple[str, ...]:
+        return tuple(f.name for f in self.fields if f.required)
+
+    def revision_tuple(self) -> Tuple[int, ...]:
+        """Parse the revision into a comparable integer tuple.
+
+        Non-numeric or missing components collapse to zero so that malformed
+        revisions still sort deterministically rather than raising.
