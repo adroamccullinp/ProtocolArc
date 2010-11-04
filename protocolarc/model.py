@@ -114,3 +114,14 @@ class Envelope:
         contract:  The contract name this envelope claims to satisfy.
         revision:  The contract revision this envelope targets (optional).
         data:      The raw decoded JSON body of the envelope.
+        source:    Provenance label (file name or ``<inline>``).
+    """
+
+    contract: str
+    revision: Optional[str]
+    data: Dict[str, Any]
+    source: str = "<inline>"
+
+    def identity(self) -> str:
+        rev = self.revision or "?"
+        return f"{self.contract}@{rev}:{self.source}"
