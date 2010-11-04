@@ -125,3 +125,14 @@ class Envelope:
     def identity(self) -> str:
         rev = self.revision or "?"
         return f"{self.contract}@{rev}:{self.source}"
+
+
+def json_type_of(value: Any) -> str:
+    """Return the ProtocolArc type name for a decoded JSON value."""
+
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, int):
+        return "integer"
