@@ -92,3 +92,14 @@ class Contract:
 
         Non-numeric or missing components collapse to zero so that malformed
         revisions still sort deterministically rather than raising.
+        """
+
+        parts: List[int] = []
+        for chunk in str(self.revision).split("."):
+            digits = "".join(ch for ch in chunk if ch.isdigit())
+            parts.append(int(digits) if digits else 0)
+        while len(parts) < 3:
+            parts.append(0)
+        return tuple(parts[:3])
+
+    def identity(self) -> str:
