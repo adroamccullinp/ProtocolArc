@@ -33,3 +33,14 @@ def _as_type_tuple(raw: Any, where: str):
             )
     return types
 
+
+def parse_contract(doc: Dict[str, Any], source: str = "<inline>") -> Contract:
+    """Build a Contract from a decoded contract document."""
+
+    if not isinstance(doc, dict):
+        raise ContractError(f"{source}: contract must be a JSON object")
+
+    name = _require(doc, "name", source)
+    revision = _require(doc, "revision", source)
+    fields_raw = doc.get("fields", [])
+    if not isinstance(fields_raw, list):
