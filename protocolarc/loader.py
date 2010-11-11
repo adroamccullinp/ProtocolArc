@@ -44,3 +44,13 @@ def parse_contract(doc: Dict[str, Any], source: str = "<inline>") -> Contract:
     revision = _require(doc, "revision", source)
     fields_raw = doc.get("fields", [])
     if not isinstance(fields_raw, list):
+        raise ContractError(f"{source}: 'fields' must be a list")
+
+    fields: List[FieldSpec] = []
+    seen = set()
+    for idx, fraw in enumerate(fields_raw):
+        where = f"{source}: fields[{idx}]"
+        if not isinstance(fraw, dict):
+            raise ContractError(f"{where}: each field must be an object")
+        fname = _require(fraw, "name", where)
+        if fname in seen:
