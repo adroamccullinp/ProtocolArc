@@ -54,3 +54,14 @@ def parse_contract(doc: Dict[str, Any], source: str = "<inline>") -> Contract:
             raise ContractError(f"{where}: each field must be an object")
         fname = _require(fraw, "name", where)
         if fname in seen:
+            raise ContractError(f"{where}: duplicate field name '{fname}'")
+        seen.add(fname)
+        types = _as_type_tuple(_require(fraw, "type", where), where)
+        enum_raw = fraw.get("enum")
+        enum = tuple(enum_raw) if isinstance(enum_raw, list) else None
+        fields.append(
+            FieldSpec(
+                name=str(fname),
+                types=types,
+                required=bool(fraw.get("required", True)),
+                enum=enum,
