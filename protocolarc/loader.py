@@ -106,3 +106,14 @@ def parse_envelope(doc: Dict[str, Any], source: str = "<inline>") -> Envelope:
         revision=str(revision) if revision is not None else None,
         data=data,
         source=source,
+    )
+
+
+def load_contract(path: str) -> Contract:
+    """Load a single contract from a JSON file."""
+
+    with open(path, "r", encoding="utf-8") as handle:
+        doc = json.load(handle)
+    return parse_contract(doc, source=os.path.basename(path))
+
+
