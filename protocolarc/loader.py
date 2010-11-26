@@ -75,3 +75,13 @@ def parse_contract(doc: Dict[str, Any], source: str = "<inline>") -> Contract:
         kind=str(doc.get("kind", "generic")),
         title=str(doc.get("title", name)),
         fields=fields,
+        strict=bool(doc.get("strict", False)),
+    )
+
+
+def parse_envelope(doc: Dict[str, Any], source: str = "<inline>") -> Envelope:
+    """Build an Envelope from a decoded envelope document.
+
+    Two shapes are accepted:
+
+    * *Wrapped* — an object with ``contract``, optional ``revision`` and a
