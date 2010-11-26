@@ -96,3 +96,13 @@ def parse_envelope(doc: Dict[str, Any], source: str = "<inline>") -> Envelope:
     contract = _require(doc, "contract", source)
     revision = doc.get("revision")
 
+    if "data" in doc and isinstance(doc["data"], dict):
+        data = doc["data"]
+    else:
+        data = {k: v for k, v in doc.items() if k not in ("contract", "revision")}
+
+    return Envelope(
+        contract=str(contract),
+        revision=str(revision) if revision is not None else None,
+        data=data,
+        source=source,
