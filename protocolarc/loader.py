@@ -85,3 +85,14 @@ def parse_envelope(doc: Dict[str, Any], source: str = "<inline>") -> Envelope:
     Two shapes are accepted:
 
     * *Wrapped* — an object with ``contract``, optional ``revision`` and a
+      ``data`` body. This is the canonical form.
+    * *Bare* — any object that carries a top-level ``contract`` key; the whole
+      object (minus the routing keys) becomes the data body.
+    """
+
+    if not isinstance(doc, dict):
+        raise ContractError(f"{source}: envelope must be a JSON object")
+
+    contract = _require(doc, "contract", source)
+    revision = doc.get("revision")
+
