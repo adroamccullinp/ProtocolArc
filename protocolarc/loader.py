@@ -117,3 +117,13 @@ def load_contract(path: str) -> Contract:
     return parse_contract(doc, source=os.path.basename(path))
 
 
+def load_contract_dir(path: str) -> List[Contract]:
+    """Load every ``*.json`` contract in a directory, sorted by file name."""
+
+    contracts: List[Contract] = []
+    for entry in sorted(os.listdir(path)):
+        if entry.endswith(".json"):
+            contracts.append(load_contract(os.path.join(path, entry)))
+    return contracts
+
+
