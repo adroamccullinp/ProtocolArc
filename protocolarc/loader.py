@@ -65,3 +65,13 @@ def parse_contract(doc: Dict[str, Any], source: str = "<inline>") -> Contract:
                 types=types,
                 required=bool(fraw.get("required", True)),
                 enum=enum,
+                doc=str(fraw.get("doc", "")),
+            )
+        )
+
+    return Contract(
+        name=str(name),
+        revision=str(revision),
+        kind=str(doc.get("kind", "generic")),
+        title=str(doc.get("title", name)),
+        fields=fields,
