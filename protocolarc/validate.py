@@ -14,3 +14,14 @@ from typing import Any, Dict, List, Tuple
 from .model import Contract, Envelope, json_type_of, resolve_path
 
 
+# Severity ranks; higher is worse. Used for deterministic ordering and exit
+# code derivation.
+SEVERITY_RANK = {"info": 0, "warning": 1, "error": 2}
+
+
+@dataclass(frozen=True)
+class Finding:
+    """A single validation observation."""
+
+    rule: str
+    field: str
