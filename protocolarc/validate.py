@@ -25,3 +25,14 @@ class Finding:
 
     rule: str
     field: str
+    severity: str
+    message: str
+
+    def sort_key(self) -> Tuple[int, str, str]:
+        return (-SEVERITY_RANK.get(self.severity, 0), self.field, self.rule)
+
+
+@dataclass
+class ValidationResult:
+    """Outcome of validating one envelope against one contract."""
+
