@@ -69,3 +69,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
         contract=contract.name,
         revision=contract.revision,
     )
+
+    # Rule: contract-name match. A mismatch is an error because the envelope is
+    # being checked against the wrong contract.
+    if envelope.contract != contract.name:
+        result.findings.append(
+            Finding(
+                rule="contract.match",
+                field="<envelope>",
+                severity="error",
+                message=(
+                    f"envelope targets '{envelope.contract}' "
