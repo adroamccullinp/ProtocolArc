@@ -36,3 +36,14 @@ class Finding:
 class ValidationResult:
     """Outcome of validating one envelope against one contract."""
 
+    envelope: str
+    contract: str
+    revision: str
+    findings: List[Finding] = field(default_factory=list)
+
+    @property
+    def ok(self) -> bool:
+        return not any(f.severity == "error" for f in self.findings)
+
+    def counts(self) -> Dict[str, int]:
+        out = {"info": 0, "warning": 0, "error": 0}
