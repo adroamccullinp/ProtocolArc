@@ -47,3 +47,14 @@ class ValidationResult:
 
     def counts(self) -> Dict[str, int]:
         out = {"info": 0, "warning": 0, "error": 0}
+        for f in self.findings:
+            out[f.severity] = out.get(f.severity, 0) + 1
+        return out
+
+    def sorted_findings(self) -> List[Finding]:
+        return sorted(self.findings, key=lambda f: f.sort_key())
+
+
+def _check_enum(spec, value) -> bool:
+    if spec.enum is None:
+        return True
