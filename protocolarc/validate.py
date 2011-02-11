@@ -58,3 +58,14 @@ class ValidationResult:
 def _check_enum(spec, value) -> bool:
     if spec.enum is None:
         return True
+    return value in spec.enum
+
+
+def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResult:
+    """Validate an envelope against a contract, returning ordered findings."""
+
+    result = ValidationResult(
+        envelope=envelope.source,
+        contract=contract.name,
+        revision=contract.revision,
+    )
