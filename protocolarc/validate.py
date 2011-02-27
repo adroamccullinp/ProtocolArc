@@ -80,3 +80,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
                 severity="error",
                 message=(
                     f"envelope targets '{envelope.contract}' "
+                    f"but validated against '{contract.name}'"
+                ),
+            )
+        )
+
+    # Rule: revision hint. A mismatch is a warning — the envelope may be an
+    # older client talking to a newer contract.
+    if envelope.revision and envelope.revision != contract.revision:
+        result.findings.append(
+            Finding(
+                rule="revision.hint",
