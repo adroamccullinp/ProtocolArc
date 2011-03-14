@@ -124,3 +124,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
                 Finding(
                     rule="field.type",
                     field=spec.name,
+                    severity="error",
+                    message=(
+                        f"field '{spec.name}' has type '{actual}', "
+                        f"expected '{spec.type_label()}'"
+                    ),
+                )
+            )
+            continue
+
+        if not _check_enum(spec, value):
+            allowed = ", ".join(repr(e) for e in spec.enum)
