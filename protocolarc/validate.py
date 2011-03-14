@@ -113,3 +113,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
                         rule="field.required",
                         field=spec.name,
                         severity="error",
+                        message=f"required field '{spec.name}' is missing",
+                    )
+                )
+            continue
+
+        actual = json_type_of(value)
+        if not spec.accepts_type(actual):
+            result.findings.append(
+                Finding(
+                    rule="field.type",
+                    field=spec.name,
