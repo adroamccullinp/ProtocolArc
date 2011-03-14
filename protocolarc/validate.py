@@ -91,3 +91,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
         result.findings.append(
             Finding(
                 rule="revision.hint",
+                field="<envelope>",
+                severity="warning",
+                message=(
+                    f"envelope declares revision '{envelope.revision}', "
+                    f"contract is '{contract.revision}'"
+                ),
+            )
+        )
+
+    field_map = contract.field_map()
+
