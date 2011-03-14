@@ -102,3 +102,14 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
 
     field_map = contract.field_map()
 
+    # Per-field rules.
+    for spec in contract.fields:
+        present, value = resolve_path(envelope.data, spec.name)
+
+        if not present:
+            if spec.required:
+                result.findings.append(
+                    Finding(
+                        rule="field.required",
+                        field=spec.name,
+                        severity="error",
