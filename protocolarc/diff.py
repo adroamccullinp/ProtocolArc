@@ -38,3 +38,15 @@ CHANGE_IMPACT = {
     "field.added.required": Compatibility.BREAKING,
     "field.added.optional": Compatibility.FORWARD,
     "field.removed.required": Compatibility.BREAKING,
+    "field.removed.optional": Compatibility.FORWARD,
+    "field.type.narrowed": Compatibility.BREAKING,
+    "field.type.widened": Compatibility.FORWARD,
+    "field.required.tightened": Compatibility.BREAKING,
+    "field.required.relaxed": Compatibility.FORWARD,
+    "field.enum.restricted": Compatibility.BREAKING,
+    "field.enum.expanded": Compatibility.FORWARD,
+    "field.enum.added": Compatibility.BREAKING,
+    "field.enum.removed": Compatibility.FORWARD,
+}
+
+
