@@ -27,3 +27,14 @@ class Compatibility(Enum):
     COMPATIBLE = "compatible"
     FORWARD = "forward"
     BREAKING = "breaking"
+
+    @property
+    def rank(self) -> int:
+        return {"compatible": 0, "forward": 1, "breaking": 2}[self.value]
+
+
+# Each change kind maps to the compatibility impact it implies.
+CHANGE_IMPACT = {
+    "field.added.required": Compatibility.BREAKING,
+    "field.added.optional": Compatibility.FORWARD,
+    "field.removed.required": Compatibility.BREAKING,
