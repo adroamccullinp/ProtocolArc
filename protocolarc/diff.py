@@ -16,3 +16,14 @@ single breaking change makes the whole diff breaking.
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Dict, List, Tuple
+
+from .model import Contract, FieldSpec
+
+
+class Compatibility(Enum):
+    COMPATIBLE = "compatible"
+    FORWARD = "forward"
+    BREAKING = "breaking"
