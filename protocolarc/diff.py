@@ -61,3 +61,15 @@ class Change:
     @property
     def impact(self) -> Compatibility:
         return CHANGE_IMPACT.get(self.kind, Compatibility.COMPATIBLE)
+
+    def sort_key(self) -> Tuple[int, str, str]:
+        return (-self.impact.rank, self.field, self.kind)
+
+
+@dataclass
+class ContractDiff:
+    """Full diff between an ``old`` and ``new`` revision of one contract."""
+
+    name: str
+    old_revision: str
+    new_revision: str
