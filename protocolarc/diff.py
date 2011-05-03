@@ -50,3 +50,14 @@ CHANGE_IMPACT = {
 }
 
 
+@dataclass(frozen=True)
+class Change:
+    """A single field-level difference between two contract revisions."""
+
+    kind: str
+    field: str
+    detail: str
+
+    @property
+    def impact(self) -> Compatibility:
+        return CHANGE_IMPACT.get(self.kind, Compatibility.COMPATIBLE)
