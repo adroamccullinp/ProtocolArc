@@ -73,3 +73,14 @@ class ContractDiff:
     name: str
     old_revision: str
     new_revision: str
+    changes: List[Change] = field(default_factory=list)
+
+    @property
+    def compatibility(self) -> Compatibility:
+        worst = Compatibility.COMPATIBLE
+        for change in self.changes:
+            if change.impact.rank > worst.rank:
+                worst = change.impact
+        return worst
+
+    def sorted_changes(self) -> List[Change]:
