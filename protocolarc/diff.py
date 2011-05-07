@@ -96,3 +96,14 @@ def _type_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
     if "any" in new_types and "any" not in old_types:
         return [Change("field.type.widened", new.name, f"{old.type_label()} -> any")]
     if "any" in old_types and "any" not in new_types:
+        return [Change("field.type.narrowed", new.name, f"any -> {new.type_label()}")]
+    if old_types <= new_types:
+        changes.append(
+            Change("field.type.widened", new.name, f"{old.type_label()} -> {new.type_label()}")
+        )
+    elif new_types <= old_types:
+        changes.append(
+            Change("field.type.narrowed", new.name, f"{old.type_label()} -> {new.type_label()}")
+        )
+    else:
+        # Overlapping but neither subset: removed members are narrowing.
