@@ -141,3 +141,15 @@ def diff_contracts(old: Contract, new: Contract) -> ContractDiff:
         name=new.name,
         old_revision=old.revision,
         new_revision=new.revision,
+    )
+
+    old_map: Dict[str, FieldSpec] = old.field_map()
+    new_map: Dict[str, FieldSpec] = new.field_map()
+
+    # Added fields.
+    for name in new_map:
+        if name not in old_map:
+            spec = new_map[name]
+            kind = "field.added.required" if spec.required else "field.added.optional"
+            diff.changes.append(Change(kind, name, f"added {spec.type_label()}"))
+
