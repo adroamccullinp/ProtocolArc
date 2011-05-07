@@ -84,3 +84,15 @@ class ContractDiff:
         return worst
 
     def sorted_changes(self) -> List[Change]:
+        return sorted(self.changes, key=lambda c: c.sort_key())
+
+
+def _type_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
+    old_types = set(old.types)
+    new_types = set(new.types)
+    if old_types == new_types:
+        return []
+    changes: List[Change] = []
+    if "any" in new_types and "any" not in old_types:
+        return [Change("field.type.widened", new.name, f"{old.type_label()} -> any")]
+    if "any" in old_types and "any" not in new_types:
