@@ -118,3 +118,15 @@ def _enum_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
         return []
     if old.enum is None and new.enum is not None:
         return [Change("field.enum.added", new.name, f"added enum {list(new.enum)!r}")]
+    if old.enum is not None and new.enum is None:
+        return [Change("field.enum.removed", new.name, "enum constraint removed")]
+    old_set = set(old.enum or ())
+    new_set = set(new.enum or ())
+    if old_set == new_set:
+        return []
+    changes: List[Change] = []
+    if new_set < old_set:
+        changes.append(Change("field.enum.restricted", new.name, f"removed {sorted(old_set - new_set)!r}"))
+    elif old_set < new_set:
+        changes.append(Change("field.enum.expanded", new.name, f"added {sorted(new_set - old_set)!r}"))
+    else:
