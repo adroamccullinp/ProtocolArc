@@ -107,3 +107,14 @@ def _type_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
         )
     else:
         # Overlapping but neither subset: removed members are narrowing.
+        changes.append(
+            Change("field.type.narrowed", new.name, f"{old.type_label()} -> {new.type_label()}")
+        )
+    return changes
+
+
+def _enum_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
+    if old.enum is None and new.enum is None:
+        return []
+    if old.enum is None and new.enum is not None:
+        return [Change("field.enum.added", new.name, f"added enum {list(new.enum)!r}")]
