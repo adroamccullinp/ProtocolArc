@@ -130,3 +130,14 @@ def _enum_relation(old: FieldSpec, new: FieldSpec) -> List[Change]:
     elif old_set < new_set:
         changes.append(Change("field.enum.expanded", new.name, f"added {sorted(new_set - old_set)!r}"))
     else:
+        changes.append(Change("field.enum.restricted", new.name, "enum membership changed"))
+    return changes
+
+
+def diff_contracts(old: Contract, new: Contract) -> ContractDiff:
+    """Compute the field-level diff between two contract revisions."""
+
+    diff = ContractDiff(
+        name=new.name,
+        old_revision=old.revision,
+        new_revision=new.revision,
