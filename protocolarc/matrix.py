@@ -22,3 +22,10 @@ class Cell:
 
     envelope: str
     contract: str
+    revision: str
+    ok: bool
+    errors: int
+    warnings: int
+
+
+@dataclass
