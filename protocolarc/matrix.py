@@ -14,3 +14,11 @@ from typing import Dict, List, Tuple
 from .model import Contract, Envelope
 from .validate import validate_envelope, ValidationResult
 from .diff import diff_contracts, ContractDiff
+
+
+@dataclass
+class Cell:
+    """One envelope-vs-contract validation outcome."""
+
+    envelope: str
+    contract: str
