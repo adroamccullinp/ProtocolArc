@@ -29,3 +29,10 @@ class Cell:
 
 
 @dataclass
+class ContractMatrix:
+    """The full cross product of envelopes and contracts plus revision chains."""
+
+    cells: List[Cell] = field(default_factory=list)
+    diffs: List[ContractDiff] = field(default_factory=list)
+    contract_ids: List[str] = field(default_factory=list)
+    envelope_ids: List[str] = field(default_factory=list)
