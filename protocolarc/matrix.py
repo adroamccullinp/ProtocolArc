@@ -36,3 +36,11 @@ class ContractMatrix:
     diffs: List[ContractDiff] = field(default_factory=list)
     contract_ids: List[str] = field(default_factory=list)
     envelope_ids: List[str] = field(default_factory=list)
+
+    def cell_for(self, envelope: str, contract_id: str):
+        for c in self.cells:
+            if c.envelope == envelope and f"{c.contract}@{c.revision}" == contract_id:
+                return c
+        return None
+
+    def pass_rate(self) -> float:
