@@ -44,3 +44,10 @@ class ContractMatrix:
         return None
 
     def pass_rate(self) -> float:
+        if not self.cells:
+            return 1.0
+        passed = sum(1 for c in self.cells if c.ok)
+        return round(passed / len(self.cells), 4)
+
+
+def _revision_chains(contracts: List[Contract]) -> List[ContractDiff]:
