@@ -59,3 +59,10 @@ def _revision_chains(contracts: List[Contract]) -> List[ContractDiff]:
 
     diffs: List[ContractDiff] = []
     for name in sorted(by_name):
+        chain = sorted(by_name[name], key=lambda c: c.revision_tuple())
+        for older, newer in zip(chain, chain[1:]):
+            diffs.append(diff_contracts(older, newer))
+    return diffs
+
+
+def build_matrix(contracts: List[Contract], envelopes: List[Envelope]) -> ContractMatrix:
