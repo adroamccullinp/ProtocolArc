@@ -66,3 +66,11 @@ def _revision_chains(contracts: List[Contract]) -> List[ContractDiff]:
 
 
 def build_matrix(contracts: List[Contract], envelopes: List[Envelope]) -> ContractMatrix:
+    """Validate every envelope against every contract and build the matrix."""
+
+    matrix = ContractMatrix()
+    matrix.contract_ids = sorted({c.identity() for c in contracts})
+    matrix.envelope_ids = [e.source for e in envelopes]
+
+    for contract in sorted(contracts, key=lambda c: (c.name, c.revision_tuple())):
+        for envelope in envelopes:
