@@ -51,3 +51,11 @@ class ContractMatrix:
 
 
 def _revision_chains(contracts: List[Contract]) -> List[ContractDiff]:
+    """Build diffs between consecutive revisions of each contract name."""
+
+    by_name: Dict[str, List[Contract]] = {}
+    for contract in contracts:
+        by_name.setdefault(contract.name, []).append(contract)
+
+    diffs: List[ContractDiff] = []
+    for name in sorted(by_name):
