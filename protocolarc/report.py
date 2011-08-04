@@ -28,3 +28,16 @@ def _matrix_to_dict(matrix: ContractMatrix) -> Dict[str, Any]:
             "pass_rate": matrix.pass_rate(),
             "revision_diffs": len(matrix.diffs),
         },
+        "contracts": matrix.contract_ids,
+        "envelopes": sorted(set(matrix.envelope_ids)),
+        "cells": [
+            {
+                "envelope": c.envelope,
+                "contract": c.contract,
+                "revision": c.revision,
+                "ok": c.ok,
+                "errors": c.errors,
+                "warnings": c.warnings,
+            }
+            for c in sorted(
+                matrix.cells, key=lambda x: (x.contract, x.revision, x.envelope)
