@@ -41,3 +41,15 @@ def _matrix_to_dict(matrix: ContractMatrix) -> Dict[str, Any]:
             }
             for c in sorted(
                 matrix.cells, key=lambda x: (x.contract, x.revision, x.envelope)
+            )
+        ],
+        "diffs": [
+            {
+                "name": d.name,
+                "from": d.old_revision,
+                "to": d.new_revision,
+                "compatibility": d.compatibility.value,
+                "changes": [
+                    {"kind": ch.kind, "field": ch.field, "impact": ch.impact.value, "detail": ch.detail}
+                    for ch in d.sorted_changes()
+                ],
