@@ -53,3 +53,15 @@ def _matrix_to_dict(matrix: ContractMatrix) -> Dict[str, Any]:
                     {"kind": ch.kind, "field": ch.field, "impact": ch.impact.value, "detail": ch.detail}
                     for ch in d.sorted_changes()
                 ],
+            }
+            for d in sorted(matrix.diffs, key=lambda d: (d.name, d.new_revision))
+        ],
+    }
+
+
+def _render_json(matrix: ContractMatrix) -> str:
+    return json.dumps(_matrix_to_dict(matrix), indent=2, sort_keys=True)
+
+
+def _badge(ok: bool) -> str:
+    return "PASS" if ok else "FAIL"
