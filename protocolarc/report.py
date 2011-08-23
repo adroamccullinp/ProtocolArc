@@ -78,3 +78,15 @@ def _render_markdown(matrix: ContractMatrix) -> str:
     lines.append(f"- Validation cells: {len(matrix.cells)}")
     lines.append(f"- Pass rate: {matrix.pass_rate() * 100:.1f}%")
     lines.append("")
+
+    lines.append("## Contract Matrix")
+    lines.append("")
+    envelopes = sorted(set(matrix.envelope_ids))
+    header = "| Contract | " + " | ".join(envelopes) + " |"
+    sep = "| --- | " + " | ".join(["---"] * len(envelopes)) + " |"
+    lines.append(header)
+    lines.append(sep)
+    for contract_id in matrix.contract_ids:
+        row = [contract_id]
+        for env in envelopes:
+            cell = matrix.cell_for(env, contract_id)
