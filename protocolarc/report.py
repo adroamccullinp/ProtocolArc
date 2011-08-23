@@ -65,3 +65,16 @@ def _render_json(matrix: ContractMatrix) -> str:
 
 def _badge(ok: bool) -> str:
     return "PASS" if ok else "FAIL"
+
+
+def _render_markdown(matrix: ContractMatrix) -> str:
+    lines: List[str] = []
+    lines.append("# ProtocolArc Contract Report")
+    lines.append("")
+    lines.append("## Summary")
+    lines.append("")
+    lines.append(f"- Contracts: {len(matrix.contract_ids)}")
+    lines.append(f"- Envelopes: {len(set(matrix.envelope_ids))}")
+    lines.append(f"- Validation cells: {len(matrix.cells)}")
+    lines.append(f"- Pass rate: {matrix.pass_rate() * 100:.1f}%")
+    lines.append("")
