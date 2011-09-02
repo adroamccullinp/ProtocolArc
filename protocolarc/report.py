@@ -103,3 +103,15 @@ def _render_markdown(matrix: ContractMatrix) -> str:
     if matrix.diffs:
         lines.append("## Revision Log")
         lines.append("")
+        for d in sorted(matrix.diffs, key=lambda d: (d.name, d.new_revision)):
+            lines.append(f"### {d.name}: {d.old_revision} -> {d.new_revision}")
+            lines.append("")
+            lines.append(f"Compatibility: **{d.compatibility.value.upper()}**")
+            lines.append("")
+            if not d.changes:
+                lines.append("_No field-level changes._")
+                lines.append("")
+                continue
+            lines.append("| Field | Change | Impact | Detail |")
+            lines.append("| --- | --- | --- | --- |")
+            for ch in d.sorted_changes():
