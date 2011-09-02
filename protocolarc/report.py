@@ -90,3 +90,16 @@ def _render_markdown(matrix: ContractMatrix) -> str:
         row = [contract_id]
         for env in envelopes:
             cell = matrix.cell_for(env, contract_id)
+            if cell is None:
+                row.append("-")
+            else:
+                mark = _badge(cell.ok)
+                if cell.warnings:
+                    mark += f" ({cell.warnings}w)"
+                row.append(mark)
+        lines.append("| " + " | ".join(row) + " |")
+    lines.append("")
+
+    if matrix.diffs:
+        lines.append("## Revision Log")
+        lines.append("")
