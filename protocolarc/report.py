@@ -115,3 +115,16 @@ def _render_markdown(matrix: ContractMatrix) -> str:
             lines.append("| Field | Change | Impact | Detail |")
             lines.append("| --- | --- | --- | --- |")
             for ch in d.sorted_changes():
+                lines.append(f"| {ch.field} | {ch.kind} | {ch.impact.value} | {ch.detail} |")
+            lines.append("")
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def _render_text(matrix: ContractMatrix) -> str:
+    lines: List[str] = []
+    lines.append("ProtocolArc report")
+    lines.append(f"  contracts={len(matrix.contract_ids)} "
+                 f"envelopes={len(set(matrix.envelope_ids))} "
+                 f"pass_rate={matrix.pass_rate() * 100:.1f}%")
+    for c in sorted(matrix.cells, key=lambda x: (x.contract, x.revision, x.envelope)):
