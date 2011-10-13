@@ -140,3 +140,16 @@ def _render_text(matrix: ContractMatrix) -> str:
     return "\n".join(lines) + "\n"
 
 
+def render_report(matrix: ContractMatrix, fmt: str = "markdown") -> str:
+    """Render a matrix into the requested format."""
+
+    if fmt == "json":
+        return _render_json(matrix)
+    if fmt == "text":
+        return _render_text(matrix)
+    if fmt == "markdown":
+        return _render_markdown(matrix)
+    raise ValueError(f"unknown report format '{fmt}'")
+
+
+def render_validation(results: List[ValidationResult], fmt: str = "text") -> str:
