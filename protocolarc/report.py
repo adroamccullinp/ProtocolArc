@@ -128,3 +128,15 @@ def _render_text(matrix: ContractMatrix) -> str:
                  f"envelopes={len(set(matrix.envelope_ids))} "
                  f"pass_rate={matrix.pass_rate() * 100:.1f}%")
     for c in sorted(matrix.cells, key=lambda x: (x.contract, x.revision, x.envelope)):
+        lines.append(
+            f"  [{_badge(c.ok)}] {c.contract}@{c.revision} <- {c.envelope} "
+            f"(err={c.errors} warn={c.warnings})"
+        )
+    for d in sorted(matrix.diffs, key=lambda d: (d.name, d.new_revision)):
+        lines.append(
+            f"  diff {d.name} {d.old_revision}->{d.new_revision}: "
+            f"{d.compatibility.value} ({len(d.changes)} changes)"
+        )
+    return "\n".join(lines) + "\n"
+
+
