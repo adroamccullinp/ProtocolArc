@@ -36,3 +36,15 @@ public static class Loader
                 if (f.TryGetProperty("enum", out var enumEl) && enumEl.ValueKind == JsonValueKind.Array)
                     enumValues = enumEl.EnumerateArray().Select(e => e.Clone()).ToList();
 
+                bool required = !f.TryGetProperty("required", out var reqEl) ||
+                                reqEl.ValueKind != JsonValueKind.False;
+
+                string docText = f.TryGetProperty("doc", out var docEl) &&
+                                 docEl.ValueKind == JsonValueKind.String
+                    ? docEl.GetString() ?? ""
+                    : "";
+
+                fields.Add(new FieldSpec(fname, types, required, enumValues, docText));
+                idx++;
+            }
+        }
