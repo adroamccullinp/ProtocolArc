@@ -13,3 +13,15 @@ public static class Loader
     {
         if (doc.ValueKind != JsonValueKind.Object)
             throw new ContractException($"{source}: contract must be a JSON object");
+
+        var name = RequireString(doc, "name", source);
+        var revision = RequireString(doc, "revision", source);
+
+        var fields = new List<FieldSpec>();
+        var seen = new HashSet<string>();
+        if (doc.TryGetProperty("fields", out var fieldsEl) && fieldsEl.ValueKind == JsonValueKind.Array)
+        {
+            int idx = 0;
+            foreach (var f in fieldsEl.EnumerateArray())
+            {
+                var where = $"{source}: fields[{idx}]";
