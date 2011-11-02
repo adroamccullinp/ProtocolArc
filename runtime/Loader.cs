@@ -25,3 +25,14 @@ public static class Loader
             foreach (var f in fieldsEl.EnumerateArray())
             {
                 var where = $"{source}: fields[{idx}]";
+                if (f.ValueKind != JsonValueKind.Object)
+                    throw new ContractException($"{where}: each field must be an object");
+                var fname = RequireString(f, "name", where);
+                if (!seen.Add(fname))
+                    throw new ContractException($"{where}: duplicate field name '{fname}'");
+
+                var types = ReadTypes(f, where);
+                List<JsonElement>? enumValues = null;
+                if (f.TryGetProperty("enum", out var enumEl) && enumEl.ValueKind == JsonValueKind.Array)
+                    enumValues = enumEl.EnumerateArray().Select(e => e.Clone()).ToList();
+
