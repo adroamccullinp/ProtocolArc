@@ -59,3 +59,15 @@ public static class Loader
             Fields = fields
         };
     }
+
+    public static Envelope ParseEnvelope(JsonElement doc, string source)
+    {
+        if (doc.ValueKind != JsonValueKind.Object)
+            throw new ContractException($"{source}: envelope must be a JSON object");
+
+        var contract = RequireString(doc, "contract", source);
+        string? revision = doc.TryGetProperty("revision", out var revEl) &&
+                           revEl.ValueKind == JsonValueKind.String
+            ? revEl.GetString()
+            : null;
+
