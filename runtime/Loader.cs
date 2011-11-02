@@ -48,3 +48,14 @@ public static class Loader
                 idx++;
             }
         }
+
+        return new Contract
+        {
+            Name = name,
+            Revision = revision,
+            Kind = ReadString(doc, "kind", "generic"),
+            Title = ReadString(doc, "title", name),
+            Strict = doc.TryGetProperty("strict", out var s) && s.ValueKind == JsonValueKind.True,
+            Fields = fields
+        };
+    }
