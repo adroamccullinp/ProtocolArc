@@ -94,3 +94,14 @@ public static class Loader
             using var parsed = JsonDocument.Parse(stream);
             data = parsed.RootElement.Clone();
         }
+
+        return new Envelope
+        {
+            Contract = contract,
+            Revision = revision,
+            Data = data,
+            Source = source
+        };
+    }
+
+    private static IReadOnlyList<string> ReadTypes(JsonElement f, string where)
