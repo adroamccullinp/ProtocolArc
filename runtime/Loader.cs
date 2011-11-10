@@ -71,3 +71,14 @@ public static class Loader
             ? revEl.GetString()
             : null;
 
+        JsonElement data;
+        if (doc.TryGetProperty("data", out var dataEl) && dataEl.ValueKind == JsonValueKind.Object)
+        {
+            data = dataEl.Clone();
+        }
+        else
+        {
+            // Bare form: build an object without the routing keys.
+            using var stream = new MemoryStream();
+            using (var writer = new Utf8JsonWriter(stream))
+            {
