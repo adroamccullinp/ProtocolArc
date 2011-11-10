@@ -82,3 +82,15 @@ public static class Loader
             using var stream = new MemoryStream();
             using (var writer = new Utf8JsonWriter(stream))
             {
+                writer.WriteStartObject();
+                foreach (var prop in doc.EnumerateObject())
+                {
+                    if (prop.Name is "contract" or "revision") continue;
+                    prop.WriteTo(writer);
+                }
+                writer.WriteEndObject();
+            }
+            stream.Position = 0;
+            using var parsed = JsonDocument.Parse(stream);
+            data = parsed.RootElement.Clone();
+        }
