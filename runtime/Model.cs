@@ -20,3 +20,11 @@ public static class JsonTypes
         JsonValueKind.String => "string",
         JsonValueKind.True => "boolean",
         JsonValueKind.False => "boolean",
+        JsonValueKind.Object => "object",
+        JsonValueKind.Array => "array",
+        JsonValueKind.Null => "null",
+        JsonValueKind.Number => element.TryGetInt64(out _) ? "integer" : "number",
+        _ => "any"
+    };
+}
+
