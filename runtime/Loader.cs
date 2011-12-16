@@ -117,3 +117,15 @@ public static class Loader
         else if (typeEl.ValueKind == JsonValueKind.Array)
         {
             foreach (var t in typeEl.EnumerateArray())
+                types.Add(t.GetString() ?? "");
+        }
+        else
+        {
+            throw new ContractException($"{where}: 'type' must be a string or list");
+        }
+
+        foreach (var t in types)
+            if (!JsonTypes.All.Contains(t))
+                throw new ContractException($"{where}: unknown type '{t}'");
+
+        if (types.Count == 0)
