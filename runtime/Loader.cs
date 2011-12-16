@@ -105,3 +105,15 @@ public static class Loader
     }
 
     private static IReadOnlyList<string> ReadTypes(JsonElement f, string where)
+    {
+        if (!f.TryGetProperty("type", out var typeEl))
+            throw new ContractException($"{where}: missing required key 'type'");
+
+        var types = new List<string>();
+        if (typeEl.ValueKind == JsonValueKind.String)
+        {
+            types.Add(typeEl.GetString()!);
+        }
+        else if (typeEl.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var t in typeEl.EnumerateArray())
