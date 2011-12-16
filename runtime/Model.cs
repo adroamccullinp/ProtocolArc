@@ -12,3 +12,11 @@ public static class JsonTypes
     public static readonly string[] All =
     {
         "string", "integer", "number", "boolean", "object", "array", "null", "any"
+    };
+
+    /// <summary>Return the ProtocolArc type name for a JSON element.</summary>
+    public static string Of(JsonElement element) => element.ValueKind switch
+    {
+        JsonValueKind.String => "string",
+        JsonValueKind.True => "boolean",
+        JsonValueKind.False => "boolean",
