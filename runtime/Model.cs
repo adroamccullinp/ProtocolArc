@@ -44,3 +44,11 @@ public sealed record FieldSpec(
 
 /// <summary>A versioned protocol contract.</summary>
 public sealed class Contract
+{
+    public required string Name { get; init; }
+    public required string Revision { get; init; }
+    public string Kind { get; init; } = "generic";
+    public string Title { get; init; } = "";
+    public bool Strict { get; init; }
+    public List<FieldSpec> Fields { get; init; } = new();
+
