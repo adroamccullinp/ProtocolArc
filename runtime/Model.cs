@@ -28,3 +28,11 @@ public static class JsonTypes
     };
 }
 
+/// <summary>Specification for a single contract field.</summary>
+public sealed record FieldSpec(
+    string Name,
+    IReadOnlyList<string> Types,
+    bool Required,
+    IReadOnlyList<JsonElement>? Enum,
+    string Doc)
+{
