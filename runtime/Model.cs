@@ -36,3 +36,11 @@ public sealed record FieldSpec(
     IReadOnlyList<JsonElement>? Enum,
     string Doc)
 {
+    public bool AcceptsType(string typeName) =>
+        Types.Contains("any") || Types.Contains(typeName);
+
+    public string TypeLabel() => string.Join("|", Types);
+}
+
+/// <summary>A versioned protocol contract.</summary>
+public sealed class Contract
