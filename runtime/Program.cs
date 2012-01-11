@@ -45,3 +45,17 @@ internal static class Cli
             return 3;
         }
     }
+
+    private static int Unknown(string cmd)
+    {
+        Console.Error.WriteLine($"error: unknown command '{cmd}'");
+        return 3;
+    }
+
+    private static Contract LoadContract(string path)
+    {
+        using var doc = JsonDocument.Parse(File.ReadAllText(path));
+        return Loader.ParseContract(doc.RootElement, Path.GetFileName(path));
+    }
+
+    private static IEnumerable<Envelope> LoadEnvelopes(string path)
