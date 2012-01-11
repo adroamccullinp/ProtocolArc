@@ -85,3 +85,16 @@ internal static class Cli
         else
         {
             envelopes.Add(Loader.ParseEnvelope(whole.RootElement, name));
+        }
+        return envelopes;
+    }
+
+    private static int Validate(string[] args)
+    {
+        if (args.Length < 3)
+        {
+            Console.Error.WriteLine("usage: validate <contract.json> <envelope> [--json]");
+            return 3;
+        }
+        bool json = args.Contains("--json");
+        var contract = LoadContract(args[1]);
