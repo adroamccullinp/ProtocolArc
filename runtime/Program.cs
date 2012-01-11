@@ -98,3 +98,17 @@ internal static class Cli
         }
         bool json = args.Contains("--json");
         var contract = LoadContract(args[1]);
+        var envelopes = LoadEnvelopes(args[2]);
+
+        bool allOk = true;
+        var records = new List<(Envelope env, List<Finding> findings, bool ok)>();
+        foreach (var env in envelopes)
+        {
+            var findings = Validator.Validate(contract, env);
+            bool ok = !Validator.HasError(findings);
+            allOk &= ok;
+            records.Add((env, findings, ok));
+        }
+
+        if (json)
+        {
