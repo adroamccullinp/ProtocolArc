@@ -59,3 +59,16 @@ internal static class Cli
     }
 
     private static IEnumerable<Envelope> LoadEnvelopes(string path)
+    {
+        var name = Path.GetFileName(path);
+        var envelopes = new List<Envelope>();
+        if (path.EndsWith(".jsonl", StringComparison.OrdinalIgnoreCase))
+        {
+            int lineno = 0;
+            foreach (var line in File.ReadLines(path))
+            {
+                lineno++;
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                using var doc = JsonDocument.Parse(line);
+                envelopes.Add(Loader.ParseEnvelope(doc.RootElement, $"{name}:{lineno}"));
+            }
