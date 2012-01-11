@@ -32,3 +32,16 @@ internal static class Cli
                 "describe" => Describe(args),
                 "selfcheck" => SelfCheck(),
                 _ => Unknown(args[0])
+            };
+        }
+        catch (ContractException ex)
+        {
+            Console.Error.WriteLine($"error: {ex.Message}");
+            return 3;
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.Error.WriteLine($"error: file not found: {ex.FileName}");
+            return 3;
+        }
+    }
