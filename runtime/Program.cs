@@ -19,3 +19,16 @@ internal static class Cli
     public static int Run(string[] args)
     {
         if (args.Length == 0)
+        {
+            Console.Error.WriteLine("usage: ProtocolArc.Runtime <validate|describe|selfcheck> ...");
+            return 3;
+        }
+
+        try
+        {
+            return args[0] switch
+            {
+                "validate" => Validate(args),
+                "describe" => Describe(args),
+                "selfcheck" => SelfCheck(),
+                _ => Unknown(args[0])
