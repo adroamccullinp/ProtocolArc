@@ -72,3 +72,16 @@ internal static class Cli
                 using var doc = JsonDocument.Parse(line);
                 envelopes.Add(Loader.ParseEnvelope(doc.RootElement, $"{name}:{lineno}"));
             }
+            return envelopes;
+        }
+
+        using var whole = JsonDocument.Parse(File.ReadAllText(path));
+        if (whole.RootElement.ValueKind == JsonValueKind.Array)
+        {
+            int idx = 0;
+            foreach (var item in whole.RootElement.EnumerateArray())
+                envelopes.Add(Loader.ParseEnvelope(item, $"{name}[{idx++}]"));
+        }
+        else
+        {
+            envelopes.Add(Loader.ParseEnvelope(whole.RootElement, name));
