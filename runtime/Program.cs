@@ -112,3 +112,16 @@ internal static class Cli
 
         if (json)
         {
+            var payload = records
+                .OrderBy(r => r.env.Source, StringComparer.Ordinal)
+                .Select(r => new
+                {
+                    envelope = r.env.Source,
+                    contract = contract.Name,
+                    revision = contract.Revision,
+                    ok = r.ok,
+                    findings = r.findings.Select(f => new
+                    {
+                        rule = f.Rule, field = f.Field, severity = f.Severity, message = f.Message
+                    })
+                });
