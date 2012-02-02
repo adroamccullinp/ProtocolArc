@@ -138,3 +138,17 @@ internal static class Cli
             }
         }
 
+        return allOk ? 0 : 1;
+    }
+
+    private static int Describe(string[] args)
+    {
+        if (args.Length < 2)
+        {
+            Console.Error.WriteLine("usage: describe <contract.json>");
+            return 3;
+        }
+        var contract = LoadContract(args[1]);
+        Console.WriteLine($"{contract.Title} [{contract.Kind}] {contract.Identity()}");
+        Console.WriteLine($"strict={contract.Strict} fields={contract.Fields.Count}");
+        foreach (var spec in contract.Fields)
