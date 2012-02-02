@@ -125,3 +125,16 @@ internal static class Cli
                         rule = f.Rule, field = f.Field, severity = f.Severity, message = f.Message
                     })
                 });
+            Console.WriteLine(JsonSerializer.Serialize(payload,
+                new JsonSerializerOptions { WriteIndented = true }));
+        }
+        else
+        {
+            foreach (var r in records.OrderBy(r => r.env.Source, StringComparer.Ordinal))
+            {
+                Console.WriteLine($"[{(r.ok ? "PASS" : "FAIL")}] {contract.Identity()} <- {r.env.Source}");
+                foreach (var f in r.findings)
+                    Console.WriteLine($"    {f.Severity.ToUpperInvariant(),-7} {f.Rule,-22} {f.Field}: {f.Message}");
+            }
+        }
+
