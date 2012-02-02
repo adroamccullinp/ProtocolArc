@@ -152,3 +152,16 @@ internal static class Cli
         Console.WriteLine($"{contract.Title} [{contract.Kind}] {contract.Identity()}");
         Console.WriteLine($"strict={contract.Strict} fields={contract.Fields.Count}");
         foreach (var spec in contract.Fields)
+        {
+            var req = spec.Required ? "required" : "optional";
+            Console.WriteLine($"  {spec.Name,-28} {spec.TypeLabel(),-18} {req}");
+        }
+        return 0;
+    }
+
+    // A self-contained sanity check used by CI to confirm the runtime works
+    // without any external fixtures. It builds a contract and two envelopes in
+    // memory and asserts the expected pass/fail split.
+    private static int SelfCheck()
+    {
+        const string contractJson = """
