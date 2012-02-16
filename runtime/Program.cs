@@ -165,3 +165,16 @@ internal static class Cli
     private static int SelfCheck()
     {
         const string contractJson = """
+        {
+          "name": "mcp.tool_call",
+          "revision": "1.0.0",
+          "kind": "mcp",
+          "fields": [
+            { "name": "method", "type": "string", "enum": ["tools/call"] },
+            { "name": "params.name", "type": "string" },
+            { "name": "params.arguments", "type": "object", "required": false }
+          ]
+        }
+        """;
+        const string goodJson = """
+        { "contract": "mcp.tool_call",
