@@ -6,3 +6,5 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>ProtocolArc.Runtime</RootNamespace>
+    <AssemblyName>ProtocolArc.Runtime</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
