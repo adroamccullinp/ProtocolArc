@@ -19,3 +19,14 @@ public static class Validator
     public static List<Finding> Validate(Contract contract, Envelope envelope)
     {
         var findings = new List<Finding>();
+
+        if (envelope.Contract != contract.Name)
+        {
+            findings.Add(new Finding(
+                "contract.match", "<envelope>", "error",
+                $"envelope targets '{envelope.Contract}' but validated against '{contract.Name}'"));
+        }
+
+        if (!string.IsNullOrEmpty(envelope.Revision) && envelope.Revision != contract.Revision)
+        {
+            findings.Add(new Finding(
