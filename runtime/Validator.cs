@@ -9,3 +9,13 @@ namespace ProtocolArc.Runtime;
 /// </summary>
 public static class Validator
 {
+    private static readonly Dictionary<string, int> SeverityRank = new()
+    {
+        ["info"] = 0,
+        ["warning"] = 1,
+        ["error"] = 2
+    };
+
+    public static List<Finding> Validate(Contract contract, Envelope envelope)
+    {
+        var findings = new List<Finding>();
