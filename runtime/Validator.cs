@@ -30,3 +30,13 @@ public static class Validator
         if (!string.IsNullOrEmpty(envelope.Revision) && envelope.Revision != contract.Revision)
         {
             findings.Add(new Finding(
+                "revision.hint", "<envelope>", "warning",
+                $"envelope declares revision '{envelope.Revision}', contract is '{contract.Revision}'"));
+        }
+
+        foreach (var spec in contract.Fields)
+        {
+            var (present, value) = ResolvePath(envelope.Data, spec.Name);
+            if (!present)
+            {
+                if (spec.Required)
