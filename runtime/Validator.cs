@@ -72,3 +72,13 @@ public static class Validator
             {
                 if (!roots.Contains(prop.Name))
                     findings.Add(new Finding(
+                        "field.unknown", prop.Name, "warning",
+                        $"field '{prop.Name}' is not declared by a strict contract"));
+            }
+        }
+
+        return Order(findings);
+    }
+
+    public static List<Finding> Order(List<Finding> findings) =>
+        findings
