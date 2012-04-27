@@ -40,3 +40,14 @@ public static class Validator
             if (!present)
             {
                 if (spec.Required)
+                    findings.Add(new Finding(
+                        "field.required", spec.Name, "error",
+                        $"required field '{spec.Name}' is missing"));
+                continue;
+            }
+
+            var actual = JsonTypes.Of(value);
+            if (!spec.AcceptsType(actual))
+            {
+                findings.Add(new Finding(
+                    "field.type", spec.Name, "error",
