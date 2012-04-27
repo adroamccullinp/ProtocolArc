@@ -51,3 +51,13 @@ public static class Validator
             {
                 findings.Add(new Finding(
                     "field.type", spec.Name, "error",
+                    $"field '{spec.Name}' has type '{actual}', expected '{spec.TypeLabel()}'"));
+                continue;
+            }
+
+            if (spec.Enum is { Count: > 0 } && !EnumContains(spec.Enum, value))
+            {
+                findings.Add(new Finding(
+                    "field.enum", spec.Name, "error",
+                    $"field '{spec.Name}' value not in allowed set"));
+            }
