@@ -61,3 +61,14 @@ public static class Validator
                     "field.enum", spec.Name, "error",
                     $"field '{spec.Name}' value not in allowed set"));
             }
+        }
+
+        if (contract.Strict && envelope.Data.ValueKind == JsonValueKind.Object)
+        {
+            var roots = contract.Fields
+                .Select(f => f.Name.Split('.')[0])
+                .ToHashSet();
+            foreach (var prop in envelope.Data.EnumerateObject().OrderBy(p => p.Name, StringComparer.Ordinal))
+            {
+                if (!roots.Contains(prop.Name))
+                    findings.Add(new Finding(
