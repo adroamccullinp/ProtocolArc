@@ -9,3 +9,10 @@ Public surface:
     load_contract          Parse a contract document into a Contract.
     load_envelope          Parse an envelope instance into an Envelope.
     validate_envelope      Validate an envelope against a contract.
+    diff_contracts         Compare two contract revisions.
+    build_matrix           Build a contract compatibility matrix.
+    render_report          Render a deterministic report document.
+"""
+
+from .model import (
+    Contract,
