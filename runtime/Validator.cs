@@ -82,3 +82,14 @@ public static class Validator
 
     public static List<Finding> Order(List<Finding> findings) =>
         findings
+            .OrderByDescending(f => SeverityRank.GetValueOrDefault(f.Severity, 0))
+            .ThenBy(f => f.Field, StringComparer.Ordinal)
+            .ThenBy(f => f.Rule, StringComparer.Ordinal)
+            .ToList();
+
+    public static bool HasError(IEnumerable<Finding> findings) =>
+        findings.Any(f => f.Severity == "error");
+
+    private static (bool, JsonElement) ResolvePath(JsonElement data, string dotted)
+    {
+        var cursor = data;
