@@ -22,3 +22,10 @@ from .model import (
 )
 from .loader import load_contract, load_envelope, load_contract_dir
 from .validate import validate_envelope, ValidationResult, Finding
+from .diff import diff_contracts, ContractDiff, Change, Compatibility
+from .matrix import build_matrix, ContractMatrix
+from .report import render_report
+
+__all__ = [
+    "Contract",
+    "Envelope",
