@@ -16,3 +16,9 @@ Public surface:
 
 from .model import (
     Contract,
+    Envelope,
+    FieldSpec,
+    ContractError,
+)
+from .loader import load_contract, load_envelope, load_contract_dir
+from .validate import validate_envelope, ValidationResult, Finding
