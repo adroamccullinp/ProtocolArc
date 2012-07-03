@@ -29,3 +29,10 @@ from .report import render_report
 __all__ = [
     "Contract",
     "Envelope",
+    "FieldSpec",
+    "ContractError",
+    "load_contract",
+    "load_envelope",
+    "load_contract_dir",
+    "validate_envelope",
+    "ValidationResult",
