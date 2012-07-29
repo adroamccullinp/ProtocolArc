@@ -42,3 +42,16 @@ def _cmd_validate(args) -> int:
         for envelope in load_envelope(env_path):
             results.append(validate_envelope(contract, envelope))
     sys.stdout.write(render_validation(results, fmt=args.format))
+    return 0 if all(r.ok for r in results) else 1
+
+
+def _cmd_diff(args) -> int:
+    old = load_contract(args.old)
+    new = load_contract(args.new)
+    diff = diff_contracts(old, new)
+
+    if args.format == "json":
+        import json
+
+        payload = {
+            "name": diff.name,
