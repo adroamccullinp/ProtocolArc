@@ -29,3 +29,16 @@ from .loader import (
     load_envelope,
 )
 from .model import ContractError
+from .validate import validate_envelope
+from .diff import diff_contracts, Compatibility
+from .matrix import build_matrix
+from .report import render_report, render_validation
+
+
+def _cmd_validate(args) -> int:
+    contract = load_contract(args.contract)
+    results = []
+    for env_path in args.envelopes:
+        for envelope in load_envelope(env_path):
+            results.append(validate_envelope(contract, envelope))
+    sys.stdout.write(render_validation(results, fmt=args.format))
