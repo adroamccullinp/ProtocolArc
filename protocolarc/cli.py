@@ -68,3 +68,16 @@ def _cmd_diff(args) -> int:
         sys.stdout.write(
             f"{diff.name}: {diff.old_revision} -> {diff.new_revision}\n"
         )
+        sys.stdout.write(f"compatibility: {diff.compatibility.value.upper()}\n")
+        for c in diff.sorted_changes():
+            sys.stdout.write(f"  {c.impact.value:11} {c.kind:26} {c.field}: {c.detail}\n")
+        if not diff.changes:
+            sys.stdout.write("  (no changes)\n")
+
+    return 2 if diff.compatibility == Compatibility.BREAKING else 0
+
+
+def _load_contracts(paths: List[str]):
+    contracts = []
+    for path in paths:
+        import os
