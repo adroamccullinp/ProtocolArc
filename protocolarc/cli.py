@@ -55,3 +55,16 @@ def _cmd_diff(args) -> int:
 
         payload = {
             "name": diff.name,
+            "from": diff.old_revision,
+            "to": diff.new_revision,
+            "compatibility": diff.compatibility.value,
+            "changes": [
+                {"kind": c.kind, "field": c.field, "impact": c.impact.value, "detail": c.detail}
+                for c in diff.sorted_changes()
+            ],
+        }
+        sys.stdout.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    else:
+        sys.stdout.write(
+            f"{diff.name}: {diff.old_revision} -> {diff.new_revision}\n"
+        )
