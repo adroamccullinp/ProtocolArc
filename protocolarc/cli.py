@@ -81,3 +81,16 @@ def _load_contracts(paths: List[str]):
     contracts = []
     for path in paths:
         import os
+
+        if os.path.isdir(path):
+            contracts.extend(load_contract_dir(path))
+        else:
+            contracts.append(load_contract(path))
+    return contracts
+
+
+def _cmd_matrix(args) -> int:
+    contracts = _load_contracts(args.contracts)
+    envelopes = []
+    for env_path in args.envelopes:
+        envelopes.extend(load_envelope(env_path))
