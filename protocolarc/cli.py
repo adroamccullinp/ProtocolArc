@@ -94,3 +94,16 @@ def _cmd_matrix(args) -> int:
     envelopes = []
     for env_path in args.envelopes:
         envelopes.extend(load_envelope(env_path))
+    matrix = build_matrix(contracts, envelopes)
+    sys.stdout.write(render_report(matrix, fmt=args.format))
+    all_ok = all(c.ok for c in matrix.cells)
+    return 0 if all_ok else 1
+
+
+def _cmd_report(args) -> int:
+    contracts = _load_contracts(args.contracts)
+    envelopes = []
+    for env_path in args.envelopes:
+        envelopes.extend(load_envelope(env_path))
+    matrix = build_matrix(contracts, envelopes)
+    output = render_report(matrix, fmt=args.format)
