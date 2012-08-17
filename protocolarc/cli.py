@@ -146,3 +146,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_diff = sub.add_parser("diff", help="compare two contract revisions")
     p_diff.add_argument("old", help="path to the older contract JSON file")
     p_diff.add_argument("new", help="path to the newer contract JSON file")
+    p_diff.add_argument("--format", choices=("text", "json"), default="text")
+    p_diff.set_defaults(func=_cmd_diff)
+
+    p_mat = sub.add_parser("matrix", help="cross-validate envelopes against contracts")
+    p_mat.add_argument("--contracts", nargs="+", required=True, help="contract files or dirs")
+    p_mat.add_argument("--envelopes", nargs="+", required=True, help="envelope files")
+    p_mat.add_argument("--format", choices=("markdown", "json", "text"), default="markdown")
+    p_mat.set_defaults(func=_cmd_matrix)
+
+    p_rep = sub.add_parser("report", help="render a full contract report")
+    p_rep.add_argument("--contracts", nargs="+", required=True, help="contract files or dirs")
+    p_rep.add_argument("--envelopes", nargs="+", required=True, help="envelope files")
