@@ -133,3 +133,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="protocolarc",
         description="ProtocolArc — an agent protocol contract lab.",
+    )
+    parser.add_argument("--version", action="version", version=f"protocolarc {__version__}")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    p_val = sub.add_parser("validate", help="validate envelopes against a contract")
+    p_val.add_argument("contract", help="path to a contract JSON file")
+    p_val.add_argument("envelopes", nargs="+", help="envelope JSON/JSONL files")
+    p_val.add_argument("--format", choices=("text", "json"), default="text")
+    p_val.set_defaults(func=_cmd_validate)
+
+    p_diff = sub.add_parser("diff", help="compare two contract revisions")
+    p_diff.add_argument("old", help="path to the older contract JSON file")
+    p_diff.add_argument("new", help="path to the newer contract JSON file")
