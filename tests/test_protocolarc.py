@@ -19,3 +19,12 @@ def test_contracts_load():
     assert c200.revision == "2.0.0"
 
 
+def test_validate_cli_passes_and_flags():
+    r = _run("validate", "examples/contracts/mcp_tool_call_1.1.0.json",
+             "examples/fixtures/mcp_calls.jsonl")
+    assert r.returncode in (0, 1)
+    assert "[PASS]" in r.stdout
+
+
+def test_older_contract_flags_enum():
+    r = _run("validate", "examples/contracts/mcp_tool_call_1.0.0.json",
