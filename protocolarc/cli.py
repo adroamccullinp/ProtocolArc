@@ -120,3 +120,16 @@ def _cmd_describe(args) -> int:
     contract = load_contract(args.contract)
     sys.stdout.write(f"{contract.title} [{contract.kind}] {contract.identity()}\n")
     sys.stdout.write(f"strict={contract.strict} fields={len(contract.fields)}\n")
+    for spec in contract.fields:
+        req = "required" if spec.required else "optional"
+        enum = f" enum={list(spec.enum)}" if spec.enum else ""
+        sys.stdout.write(f"  {spec.name:28} {spec.type_label():18} {req}{enum}\n")
+        if spec.doc:
+            sys.stdout.write(f"      {spec.doc}\n")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="protocolarc",
+        description="ProtocolArc — an agent protocol contract lab.",
