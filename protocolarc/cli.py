@@ -107,3 +107,16 @@ def _cmd_report(args) -> int:
         envelopes.extend(load_envelope(env_path))
     matrix = build_matrix(contracts, envelopes)
     output = render_report(matrix, fmt=args.format)
+    if args.out:
+        with open(args.out, "w", encoding="utf-8") as handle:
+            handle.write(output)
+        sys.stdout.write(f"wrote {args.out}\n")
+    else:
+        sys.stdout.write(output)
+    return 0
+
+
+def _cmd_describe(args) -> int:
+    contract = load_contract(args.contract)
+    sys.stdout.write(f"{contract.title} [{contract.kind}] {contract.identity()}\n")
+    sys.stdout.write(f"strict={contract.strict} fields={len(contract.fields)}\n")
