@@ -2,3 +2,7 @@
   "name": "a2a.task_send",
   "revision": "1.0.0",
   "kind": "a2a",
+  "title": "A2A Task Send",
+  "strict": true,
+  "fields": [
+    { "name": "task_id", "type": "string", "doc": "Unique task identifier." },
