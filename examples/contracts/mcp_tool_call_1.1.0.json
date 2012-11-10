@@ -1,1 +1,5 @@
 {
+  "name": "mcp.tool_call",
+  "revision": "1.1.0",
+  "kind": "mcp",
+  "title": "MCP Tool Call",
