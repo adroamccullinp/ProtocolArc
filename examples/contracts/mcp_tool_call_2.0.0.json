@@ -3,3 +3,7 @@
   "revision": "2.0.0",
   "kind": "mcp",
   "title": "MCP Tool Call",
+  "strict": false,
+  "fields": [
+    { "name": "jsonrpc", "type": "string", "enum": ["2.0"], "doc": "JSON-RPC protocol tag." },
+    { "name": "id", "type": "string", "doc": "Correlation identifier, now string-only." },
