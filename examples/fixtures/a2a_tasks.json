@@ -6,3 +6,9 @@
       "task_id": "t-001",
       "role": "user",
       "parts": [{ "type": "text", "text": "summarize the report" }],
+      "session_id": "s-9"
+    }
+  },
+  {
+    "contract": "a2a.task_send",
+    "revision": "1.0.0",
