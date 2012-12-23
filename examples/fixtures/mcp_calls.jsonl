@@ -1,0 +1,1 @@
+{"contract": "mcp.tool_call", "revision": "1.1.0", "data": {"jsonrpc": "2.0", "id": "req-1", "method": "tools/call", "params": {"name": "search_docs", "arguments": {"query": "arc"}}}}
