@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-labelledby="pa-pipe-title pa-pipe-desc">
+  <title id="pa-pipe-title">ProtocolArc validation and diff pipeline</title>
+  <desc id="pa-pipe-desc">Envelopes and contracts flow through four stages: parse JSON or JSONL, validate fields and types, diff consecutive revisions, and render a matrix report. The diff stage classifies each revision change as compatible, forward, or breaking, shown in a small legend.</desc>
+
+  <rect width="760" height="300" fill="#f5f3ec"/>
