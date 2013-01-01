@@ -11,3 +11,11 @@
   <!-- inputs -->
   <g font-family="Segoe UI,Arial,sans-serif" font-size="11" text-anchor="middle">
     <rect x="40" y="96" width="110" height="34" rx="3" fill="#ffffff" stroke="#3a5a8c" stroke-width="1.3"/>
+    <text x="95" y="117" fill="#13233f">envelopes .jsonl</text>
+    <rect x="40" y="150" width="110" height="34" rx="3" fill="#ffffff" stroke="#3a5a8c" stroke-width="1.3"/>
+    <text x="95" y="171" fill="#13233f">contracts .json</text>
+  </g>
+
+  <!-- stages -->
+  <g font-family="Segoe UI,Arial,sans-serif" text-anchor="middle">
+    <rect x="200" y="118" width="112" height="48" rx="4" fill="#13233f"/>
