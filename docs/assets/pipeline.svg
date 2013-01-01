@@ -19,3 +19,11 @@
   <!-- stages -->
   <g font-family="Segoe UI,Arial,sans-serif" text-anchor="middle">
     <rect x="200" y="118" width="112" height="48" rx="4" fill="#13233f"/>
+    <text x="256" y="140" fill="#f5f3ec" font-size="14" font-weight="600">parse</text>
+    <text x="256" y="158" fill="#8fb0ad" font-size="10">load and shape</text>
+
+    <rect x="344" y="118" width="112" height="48" rx="4" fill="#13233f"/>
+    <text x="400" y="140" fill="#f5f3ec" font-size="14" font-weight="600">validate</text>
+    <text x="400" y="158" fill="#8fb0ad" font-size="10">fields, types, enum</text>
+
+    <rect x="488" y="118" width="112" height="48" rx="4" fill="#13233f"/>
