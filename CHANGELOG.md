@@ -8,3 +8,4 @@ All notable changes to this project are documented here.
 
 ### Added
 - `.NET 9` runtime (`runtime/`): loads contracts and validates envelopes
+  outside Python; same finding semantics as the CLI.
