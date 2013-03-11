@@ -13,3 +13,4 @@ All notable changes to this project are documented here.
 - `matrix` cross-checks every envelope against every contract revision.
 
 ### Changed
+- Findings are ordered deterministically (path, then rule) across all
