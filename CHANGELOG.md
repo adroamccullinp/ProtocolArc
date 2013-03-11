@@ -11,3 +11,4 @@ All notable changes to this project are documented here.
   outside Python; same finding semantics as the CLI.
 - A2A `task.send` contract example and fixture set.
 - `matrix` cross-checks every envelope against every contract revision.
+
