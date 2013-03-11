@@ -12,3 +12,4 @@ All notable changes to this project are documented here.
 - A2A `task.send` contract example and fixture set.
 - `matrix` cross-checks every envelope against every contract revision.
 
+### Changed
