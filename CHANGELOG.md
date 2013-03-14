@@ -15,3 +15,4 @@ All notable changes to this project are documented here.
 ### Changed
 - Findings are ordered deterministically (path, then rule) across all
   subcommands.
+
