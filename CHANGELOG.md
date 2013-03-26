@@ -16,3 +16,4 @@ All notable changes to this project are documented here.
 - Findings are ordered deterministically (path, then rule) across all
   subcommands.
 
+## [0.4.0] - 2024-07-30
