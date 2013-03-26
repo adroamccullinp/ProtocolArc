@@ -17,3 +17,4 @@ All notable changes to this project are documented here.
   subcommands.
 
 ## [0.4.0] - 2024-07-30
+
