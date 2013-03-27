@@ -18,3 +18,4 @@ All notable changes to this project are documented here.
 
 ## [0.4.0] - 2024-07-30
 
+### Added
