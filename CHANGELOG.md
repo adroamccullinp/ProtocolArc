@@ -23,3 +23,4 @@ All notable changes to this project are documented here.
   worst-across-fields rule for `diff`.
 - Enum widening/narrowing detection, optional->required tightening.
 
+### Changed
