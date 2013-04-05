@@ -28,3 +28,4 @@ All notable changes to this project are documented here.
   malformed envelope raises; a well-formed non-conforming envelope produces
   findings, never an exception.
 
+## [0.3.0] - 2022-11-02
