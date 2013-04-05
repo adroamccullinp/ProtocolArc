@@ -27,3 +27,4 @@ All notable changes to this project are documented here.
 - Structural errors vs validation findings are now strictly separated: a
   malformed envelope raises; a well-formed non-conforming envelope produces
   findings, never an exception.
+
