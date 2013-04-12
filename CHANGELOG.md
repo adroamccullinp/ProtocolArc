@@ -29,3 +29,4 @@ All notable changes to this project are documented here.
   findings, never an exception.
 
 ## [0.3.0] - 2022-11-02
+
