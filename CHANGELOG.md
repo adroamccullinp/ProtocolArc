@@ -34,3 +34,4 @@ All notable changes to this project are documented here.
 - `FieldSpec` model: dotted paths, accepted types, required flag, enum,
   strict mode flagging undeclared top-level keys.
 - Contract loading from JSON with schema-shape checks.
+
