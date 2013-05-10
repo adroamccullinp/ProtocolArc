@@ -35,3 +35,4 @@ All notable changes to this project are documented here.
   strict mode flagging undeclared top-level keys.
 - Contract loading from JSON with schema-shape checks.
 
+## [0.2.0] - 2021-03-19
