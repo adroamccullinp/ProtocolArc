@@ -41,3 +41,4 @@ All notable changes to this project are documented here.
 - Ordered, severity-carrying findings with machine-stable rule names
   (`field.type.narrowed`, `revision.hint`, ...).
 - `validate` subcommand with text and JSON output.
+
