@@ -38,3 +38,4 @@ All notable changes to this project are documented here.
 ## [0.2.0] - 2021-03-19
 
 ### Added
+- Ordered, severity-carrying findings with machine-stable rule names
