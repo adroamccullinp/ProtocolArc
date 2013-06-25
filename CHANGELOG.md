@@ -42,3 +42,4 @@ All notable changes to this project are documented here.
   (`field.type.narrowed`, `revision.hint`, ...).
 - `validate` subcommand with text and JSON output.
 
+## [0.1.0] - 2019-09-08
