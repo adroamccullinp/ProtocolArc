@@ -43,3 +43,4 @@ All notable changes to this project are documented here.
 - `validate` subcommand with text and JSON output.
 
 ## [0.1.0] - 2019-09-08
+
