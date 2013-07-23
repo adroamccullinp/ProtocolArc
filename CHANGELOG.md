@@ -46,3 +46,4 @@ All notable changes to this project are documented here.
 
 ### Added
 - First contract format for MCP tool-call envelopes.
+- Minimal validation pass and report skeleton.
