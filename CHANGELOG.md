@@ -45,3 +45,4 @@ All notable changes to this project are documented here.
 ## [0.1.0] - 2019-09-08
 
 ### Added
+- First contract format for MCP tool-call envelopes.
