@@ -2,20 +2,3 @@
   <title id="pa-banner-title">ProtocolArc identity banner</title>
   <desc id="pa-banner-desc">The ProtocolArc name over a revision track. Three stamped revision markers, 1.0.0, 1.1.0 and 2.0.0, sit on a horizontal line, with the jump to 2.0.0 flagged in amber to signal a breaking change.</desc>
 
-  <rect width="640" height="220" fill="#13233f"/>
-  <rect x="0" y="0" width="640" height="5" fill="#2f6f6a"/>
-
-  <text x="40" y="86" font-family="Georgia,'Times New Roman',serif" font-size="44" font-weight="700" fill="#f5f3ec">ProtocolArc</text>
-  <text x="42" y="116" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#8fb0ad">agent protocol contract lab</text>
-
-  <!-- revision track -->
-  <line x1="70" y1="168" x2="570" y2="168" stroke="#3a5a8c" stroke-width="2"/>
-
-  <!-- rev 1.0.0 -->
-  <circle cx="130" cy="168" r="9" fill="#2f6f6a"/>
-  <text x="130" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#cfe0de">1.0.0</text>
-
-  <!-- rev 1.1.0 (forward compatible) -->
-  <circle cx="320" cy="168" r="9" fill="#2f6f6a"/>
-  <text x="320" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#cfe0de">1.1.0</text>
-
