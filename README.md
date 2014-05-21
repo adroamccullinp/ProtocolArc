@@ -84,3 +84,14 @@ python -m protocolarc validate \
 ```bash
 python -m protocolarc diff \
   examples/contracts/mcp_tool_call_1.0.0.json \
+  examples/contracts/mcp_tool_call_2.0.0.json
+```
+
+```
+mcp.tool_call: 1.0.0 -> 2.0.0
+compatibility: BREAKING
+  breaking    field.type.narrowed        id: string|integer -> string
+  breaking    field.required.tightened   params.arguments: optional -> required
+  forward     field.added.optional       params.timeout_ms: added integer
+```
+
