@@ -2,3 +2,6 @@
   <title id="pa-banner-title">ProtocolArc identity banner</title>
   <desc id="pa-banner-desc">The ProtocolArc name over a revision track. Three stamped revision markers, 1.0.0, 1.1.0 and 2.0.0, sit on a horizontal line, with the jump to 2.0.0 flagged in amber to signal a breaking change.</desc>
 
+  <rect width="640" height="220" fill="#13233f"/>
+  <rect x="0" y="0" width="640" height="5" fill="#2f6f6a"/>
+
