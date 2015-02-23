@@ -18,3 +18,14 @@ Agent systems pass structured envelopes between tools and peers: MCP tool calls,
 - two revisions of the same contract can be compared to see whether the change is safe, and
 - a whole set of envelopes and contracts can be cross-checked into one matrix report.
 
+A contract failure and a contract change are treated as different things. A malformed document raises a structural error. A document that parses but does not satisfy a contract produces ordered findings with severities, never an exception.
+
+## The compatibility model
+
+`diff` compares two revisions of the same contract and reports the worst outcome across all field-level changes. One breaking change makes the whole diff breaking.
+
+| Verdict | Meaning |
+| :------ | :------ |
+| `compatible` | The new revision accepts everything the old one did. |
+| `forward` | Old consumers keep working; new fields are optional, types widened, constraints relaxed. |
+| `breaking` | A change can reject previously valid envelopes: a required field added or removed, a type narrowed, an enum restricted, or an optional field tightened to required. |
