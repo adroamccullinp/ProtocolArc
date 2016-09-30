@@ -95,3 +95,14 @@ compatibility: BREAKING
   forward     field.added.optional       params.timeout_ms: added integer
 ```
 
+`matrix` cross-validates a set of envelopes against a set of contracts (files or directories):
+
+```bash
+python -m protocolarc matrix \
+  --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl examples/fixtures/a2a_tasks.json
+```
+
+`report` renders the same matrix as `markdown` (default), `json`, or `text`, optionally to a file:
+
+```bash
