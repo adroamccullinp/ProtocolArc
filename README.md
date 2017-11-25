@@ -29,3 +29,14 @@ A contract failure and a contract change are treated as different things. A malf
 | `compatible` | The new revision accepts everything the old one did. |
 | `forward` | Old consumers keep working; new fields are optional, types widened, constraints relaxed. |
 | `breaking` | A change can reject previously valid envelopes: a required field added or removed, a type narrowed, an enum restricted, or an optional field tightened to required. |
+
+<div align="center">
+<img src="docs/assets/pipeline.svg" alt="Pipeline: parse, validate, diff, report, with a legend for the compatible, forward, and breaking verdicts" width="88%"/>
+</div>
+
+## Data model
+
+A contract names a protocol, carries a semantic `revision`, and lists ordered `FieldSpec` entries. Each field has a dotted path (`params.name`), one or more accepted JSON types, a `required` flag, and an optional `enum`. A `strict` contract also flags top-level keys it does not declare.
+
+```json
+{
