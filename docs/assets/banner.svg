@@ -20,3 +20,6 @@
   <text x="320" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#cfe0de">1.1.0</text>
 
   <!-- rev 2.0.0 (breaking) -->
+  <rect x="502" y="159" width="18" height="18" rx="2" fill="#c8792b"/>
+  <text x="511" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#e6b483">2.0.0</text>
+
