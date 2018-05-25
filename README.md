@@ -106,3 +106,14 @@ python -m protocolarc matrix \
 `report` renders the same matrix as `markdown` (default), `json`, or `text`, optionally to a file:
 
 ```bash
+python -m protocolarc report \
+  --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl \
+  --format markdown --out report.md
+```
+
+`describe` prints a contract's field table:
+
+```bash
+python -m protocolarc describe examples/contracts/a2a_task_send_1.0.0.json
+```
