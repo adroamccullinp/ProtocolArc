@@ -39,3 +39,7 @@
   <g stroke="#3a5a8c" stroke-width="1.6" fill="none">
     <path d="M150,113 L200,135"/>
     <path d="M150,167 L200,150"/>
+    <path d="M312,142 L344,142"/>
+    <path d="M456,142 L488,142"/>
+    <path d="M600,142 L632,142"/>
+  </g>
