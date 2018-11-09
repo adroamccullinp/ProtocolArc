@@ -43,3 +43,6 @@
     <path d="M456,142 L488,142"/>
     <path d="M600,142 L632,142"/>
   </g>
+
+  <!-- compatibility legend from diff.py -->
+  <text x="34" y="220" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#13233f">diff verdict</text>
