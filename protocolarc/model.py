@@ -136,3 +136,28 @@ def json_type_of(value: Any) -> str:
         return "boolean"
     if isinstance(value, int):
         return "integer"
+    if isinstance(value, float):
+        return "number"
+    if isinstance(value, str):
+        return "string"
+    if isinstance(value, dict):
+        return "object"
+    if isinstance(value, list):
+        return "array"
+    return "any"
+
+
+def resolve_path(data: Dict[str, Any], dotted: str) -> Tuple[bool, Any]:
+    """Resolve a dotted path within a decoded object.
+
+    Returns a ``(present, value)`` tuple. ``present`` is False when any segment
+    of the path is missing, allowing the validator to distinguish an absent
+    field from a field explicitly set to ``null``.
+    """
+
+    cursor: Any = data
+    for segment in dotted.split("."):
+        if not isinstance(cursor, dict) or segment not in cursor:
+            return (False, None)
+        cursor = cursor[segment]
+# review note
