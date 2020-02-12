@@ -128,3 +128,13 @@ dotnet run -- selfcheck
 dotnet run -- validate ../examples/contracts/mcp_tool_call_1.0.0.json ../examples/fixtures/mcp_calls.jsonl --json
 dotnet run -- describe ../examples/contracts/a2a_task_send_1.0.0.json
 ```
+
+`selfcheck` builds a contract and two envelopes in memory and asserts the expected pass and fail split, so CI can confirm the runtime works without external fixtures.
+
+## How validation reads an envelope
+
+For each contract field, the validator resolves the dotted path in the envelope body and applies rules in a fixed order:
+
+- `contract.match`: the envelope must target the contract being checked (error).
+- `revision.hint`: a declared revision that differs from the contract is a warning, since it may be an older client talking to a newer contract.
+- `field.required`: a missing required field is an error.
