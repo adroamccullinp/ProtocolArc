@@ -40,3 +40,14 @@ A contract names a protocol, carries a semantic `revision`, and lists ordered `F
 
 ```json
 {
+  "name": "mcp.tool_call",
+  "revision": "1.0.0",
+  "kind": "mcp",
+  "title": "MCP Tool Call",
+  "strict": false,
+  "fields": [
+    { "name": "jsonrpc", "type": "string", "enum": ["2.0"] },
+    { "name": "id", "type": ["string", "integer"] },
+    { "name": "method", "type": "string", "enum": ["tools/call"] },
+    { "name": "params.name", "type": "string" },
+    { "name": "params.arguments", "type": "object", "required": false }
