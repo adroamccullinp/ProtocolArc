@@ -138,3 +138,14 @@ For each contract field, the validator resolves the dotted path in the envelope 
 - `contract.match`: the envelope must target the contract being checked (error).
 - `revision.hint`: a declared revision that differs from the contract is a warning, since it may be an older client talking to a newer contract.
 - `field.required`: a missing required field is an error.
+- `field.type`: a present field must match one of the accepted JSON types.
+- `field.enum`: a scalar value must be within the declared enum.
+- `field.unknown`: under a strict contract, an undeclared top-level key is a warning.
+
+Findings are sorted by severity, then field, then rule, so the output is stable across runs.
+
+## Repository layout
+
+```
+protocolarc/
+├── protocolarc/            Python package (stdlib only)
