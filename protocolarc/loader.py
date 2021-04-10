@@ -127,3 +127,26 @@ def load_contract_dir(path: str) -> List[Contract]:
     return contracts
 
 
+def load_envelope(path: str) -> List[Envelope]:
+    """Load envelopes from a ``.json`` (single/array) or ``.jsonl`` file."""
+
+    base = os.path.basename(path)
+    envelopes: List[Envelope] = []
+    if path.endswith(".jsonl"):
+        with open(path, "r", encoding="utf-8") as handle:
+            for lineno, line in enumerate(handle, start=1):
+                line = line.strip()
+                if not line:
+                    continue
+                doc = json.loads(line)
+                envelopes.append(parse_envelope(doc, source=f"{base}:{lineno}"))
+        return envelopes
+
+    with open(path, "r", encoding="utf-8") as handle:
+        doc = json.load(handle)
+    if isinstance(doc, list):
+        for idx, item in enumerate(doc):
+            envelopes.append(parse_envelope(item, source=f"{base}[{idx}]"))
+    else:
+        envelopes.append(parse_envelope(doc, source=base))
+# review note
