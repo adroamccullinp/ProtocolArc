@@ -5,3 +5,6 @@
   <rect width="640" height="220" fill="#13233f"/>
   <rect x="0" y="0" width="640" height="5" fill="#2f6f6a"/>
 
+  <text x="40" y="86" font-family="Georgia,'Times New Roman',serif" font-size="44" font-weight="700" fill="#f5f3ec">ProtocolArc</text>
+  <text x="42" y="116" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#8fb0ad">agent protocol contract lab</text>
+
