@@ -153,3 +153,29 @@ def diff_contracts(old: Contract, new: Contract) -> ContractDiff:
             kind = "field.added.required" if spec.required else "field.added.optional"
             diff.changes.append(Change(kind, name, f"added {spec.type_label()}"))
 
+    # Removed fields.
+    for name in old_map:
+        if name not in new_map:
+            spec = old_map[name]
+            kind = "field.removed.required" if spec.required else "field.removed.optional"
+            diff.changes.append(Change(kind, name, f"removed {spec.type_label()}"))
+
+    # Modified fields.
+    for name in new_map:
+        if name not in old_map:
+            continue
+        o = old_map[name]
+        n = new_map[name]
+        diff.changes.extend(_type_relation(o, n))
+        diff.changes.extend(_enum_relation(o, n))
+        if o.required != n.required:
+            if n.required and not o.required:
+                diff.changes.append(
+                    Change("field.required.tightened", name, "optional -> required")
+                )
+            else:
+                diff.changes.append(
+                    Change("field.required.relaxed", name, "required -> optional")
+                )
+
+# review note
