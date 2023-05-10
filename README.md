@@ -51,3 +51,14 @@ A contract names a protocol, carries a semantic `revision`, and lists ordered `F
     { "name": "method", "type": "string", "enum": ["tools/call"] },
     { "name": "params.name", "type": "string" },
     { "name": "params.arguments", "type": "object", "required": false }
+  ]
+}
+```
+
+An envelope declares the `contract` it targets, an optional `revision`, and its `data` body. The bundled fixtures cover both an MCP contract that evolves from `1.0.0` to `2.0.0` and a strict A2A `task_send` contract.
+
+## Commands
+
+```
+python -m protocolarc <validate|diff|matrix|report|describe> ...
+```
