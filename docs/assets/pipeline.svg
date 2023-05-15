@@ -32,3 +32,7 @@
 
     <rect x="632" y="118" width="96" height="48" rx="4" fill="#2f6f6a"/>
     <text x="680" y="140" fill="#ffffff" font-size="14" font-weight="600">report</text>
+    <text x="680" y="158" fill="#cfe0de" font-size="10">matrix</text>
+  </g>
+
+  <!-- connectors -->
