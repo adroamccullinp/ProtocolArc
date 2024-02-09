@@ -28,3 +28,7 @@
 
     <rect x="488" y="118" width="112" height="48" rx="4" fill="#13233f"/>
     <text x="544" y="140" fill="#f5f3ec" font-size="14" font-weight="600">diff</text>
+    <text x="544" y="158" fill="#8fb0ad" font-size="10">classify change</text>
+
+    <rect x="632" y="118" width="96" height="48" rx="4" fill="#2f6f6a"/>
+    <text x="680" y="140" fill="#ffffff" font-size="14" font-weight="600">report</text>
