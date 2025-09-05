@@ -28,3 +28,16 @@ def test_validate_cli_passes_and_flags():
 
 def test_older_contract_flags_enum():
     r = _run("validate", "examples/contracts/mcp_tool_call_1.0.0.json",
+             "examples/fixtures/mcp_calls.jsonl")
+    assert "field.enum" in r.stdout
+
+
+def test_diff_is_breaking():
+    r = _run("diff", "examples/contracts/mcp_tool_call_1.0.0.json",
+             "examples/contracts/mcp_tool_call_2.0.0.json")
+    assert "BREAKING" in r.stdout
+
+
+def test_a2a_fixture_shape():
+    a2a = json.loads((ROOT / "examples" / "fixtures" / "a2a_tasks.json").read_text(encoding="utf-8"))
+    assert isinstance(a2a, list) and a2a
