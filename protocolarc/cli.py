@@ -158,3 +158,32 @@ def build_parser() -> argparse.ArgumentParser:
     p_rep = sub.add_parser("report", help="render a full contract report")
     p_rep.add_argument("--contracts", nargs="+", required=True, help="contract files or dirs")
     p_rep.add_argument("--envelopes", nargs="+", required=True, help="envelope files")
+    p_rep.add_argument("--format", choices=("markdown", "json", "text"), default="markdown")
+    p_rep.add_argument("--out", help="write report to this path instead of stdout")
+    p_rep.set_defaults(func=_cmd_report)
+
+    p_desc = sub.add_parser("describe", help="print a contract field table")
+    p_desc.add_argument("contract", help="path to a contract JSON file")
+    p_desc.set_defaults(func=_cmd_describe)
+
+    return parser
+
+
+def main(argv=None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    try:
+        return args.func(args)
+    except ContractError as exc:
+        sys.stderr.write(f"error: {exc}\n")
+        return 3
+    except FileNotFoundError as exc:
+        sys.stderr.write(f"error: file not found: {exc.filename}\n")
+        return 3
+    except ValueError as exc:
+        sys.stderr.write(f"error: {exc}\n")
+        return 3
+
+
+if __name__ == "__main__":
+# review note
