@@ -15,3 +15,6 @@
   <circle cx="130" cy="168" r="9" fill="#2f6f6a"/>
   <text x="130" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#cfe0de">1.0.0</text>
 
+  <!-- rev 1.1.0 (forward compatible) -->
+  <circle cx="320" cy="168" r="9" fill="#2f6f6a"/>
+  <text x="320" y="196" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="12" fill="#cfe0de">1.1.0</text>
