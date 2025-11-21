@@ -8,3 +8,6 @@
   <text x="40" y="86" font-family="Georgia,'Times New Roman',serif" font-size="44" font-weight="700" fill="#f5f3ec">ProtocolArc</text>
   <text x="42" y="116" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#8fb0ad">agent protocol contract lab</text>
 
+  <!-- revision track -->
+  <line x1="70" y1="168" x2="570" y2="168" stroke="#3a5a8c" stroke-width="2"/>
+
