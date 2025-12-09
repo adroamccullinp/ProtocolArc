@@ -149,27 +149,3 @@ Findings are sorted by severity, then field, then rule, so the output is stable 
 ```
 protocolarc/
 ├── protocolarc/            Python package (stdlib only)
-│   ├── __main__.py         python -m protocolarc entry point
-│   ├── cli.py              validate / diff / matrix / report / describe
-│   ├── model.py            Contract, Envelope, FieldSpec
-│   ├── loader.py           parse contract and envelope documents
-│   ├── validate.py         envelope validation, ordered findings
-│   ├── diff.py             revision comparison and compatibility classes
-│   ├── matrix.py           cross-product matrix and revision chains
-│   └── report.py           markdown / json / text renderers
-├── runtime/                ProtocolArc.Runtime (.NET 9), mirrors the validator
-├── examples/
-│   ├── contracts/          mcp.tool_call 1.0.0 / 1.1.0 / 2.0.0, a2a.task_send
-│   └── fixtures/           mcp_calls.jsonl, a2a_tasks.json
-└── docs/assets/            banner and pipeline diagrams
-```
-
-## Determinism
-
-Field ordering is preserved from the contract, and every derived collection is sorted before rendering, so repeated runs over the same inputs produce byte-identical output. Reports come in `json`, `markdown`, and `text`, and each is a pure function of the matrix it renders.
-
-## Extending it
-
-Add a validation rule by appending a `Finding` inside `validate_envelope` with a rule name, field, severity, and message; the sort key keeps output stable. Add a compatibility rule by extending the `CHANGE_IMPACT` map in `diff.py` and emitting the matching `Change`. Keep the .NET runtime in step with any validation change so both components agree.
-
-<!-- docs pass by Niklas308: matrix subcommand example -->
