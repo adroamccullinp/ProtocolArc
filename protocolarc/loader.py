@@ -149,4 +149,4 @@ def load_envelope(path: str) -> List[Envelope]:
             envelopes.append(parse_envelope(item, source=f"{base}[{idx}]"))
     else:
         envelopes.append(parse_envelope(doc, source=base))
-# review note
+    return envelopes
