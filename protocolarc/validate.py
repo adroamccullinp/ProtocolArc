@@ -135,3 +135,28 @@ def validate_envelope(contract: Contract, envelope: Envelope) -> ValidationResul
 
         if not _check_enum(spec, value):
             allowed = ", ".join(repr(e) for e in spec.enum)
+            result.findings.append(
+                Finding(
+                    rule="field.enum",
+                    field=spec.name,
+                    severity="error",
+                    message=f"field '{spec.name}' value {value!r} not in {{{allowed}}}",
+                )
+            )
+
+    # Rule: strict extras. In strict mode, top-level keys not covered by any
+    # contract field become warnings.
+    if contract.strict:
+        covered_roots = {name.split(".")[0] for name in field_map}
+        for key in sorted(envelope.data.keys()):
+            if key not in covered_roots:
+                result.findings.append(
+                    Finding(
+                        rule="field.unknown",
+                        field=key,
+                        severity="warning",
+                        message=f"field '{key}' is not declared by a strict contract",
+                    )
+                )
+
+    return result
