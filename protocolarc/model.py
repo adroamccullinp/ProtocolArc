@@ -160,4 +160,4 @@ def resolve_path(data: Dict[str, Any], dotted: str) -> Tuple[bool, Any]:
         if not isinstance(cursor, dict) or segment not in cursor:
             return (False, None)
         cursor = cursor[segment]
-# review note
+    return (True, cursor)
