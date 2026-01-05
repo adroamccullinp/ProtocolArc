@@ -36,3 +36,14 @@ __all__ = [
     "load_contract_dir",
     "validate_envelope",
     "ValidationResult",
+    "Finding",
+    "diff_contracts",
+    "ContractDiff",
+    "Change",
+    "Compatibility",
+    "build_matrix",
+    "ContractMatrix",
+    "render_report",
+]
+
+__version__ = "0.4.0"
