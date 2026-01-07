@@ -95,3 +95,81 @@ compatibility: BREAKING
   forward     field.added.optional       params.timeout_ms: added integer
 ```
 
+`matrix` cross-validates a set of envelopes against a set of contracts (files or directories):
+
+```bash
+python -m protocolarc matrix \
+  --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl examples/fixtures/a2a_tasks.json
+```
+
+`report` renders the same matrix as `markdown` (default), `json`, or `text`, optionally to a file:
+
+```bash
+python -m protocolarc report \
+  --contracts examples/contracts \
+  --envelopes examples/fixtures/mcp_calls.jsonl \
+  --format markdown --out report.md
+```
+
+`describe` prints a contract's field table:
+
+```bash
+python -m protocolarc describe examples/contracts/a2a_task_send_1.0.0.json
+```
+
+## The .NET runtime
+
+`runtime/` holds `ProtocolArc.Runtime`, a native validator that mirrors the Python `validate` logic so a contract checked by either component yields the same findings. It is meant for hot paths where envelopes stream through a gateway.
+
+```bash
+cd runtime
+dotnet run -- selfcheck
+dotnet run -- validate ../examples/contracts/mcp_tool_call_1.0.0.json ../examples/fixtures/mcp_calls.jsonl --json
+dotnet run -- describe ../examples/contracts/a2a_task_send_1.0.0.json
+```
+
+`selfcheck` builds a contract and two envelopes in memory and asserts the expected pass and fail split, so CI can confirm the runtime works without external fixtures.
+
+## How validation reads an envelope
+
+For each contract field, the validator resolves the dotted path in the envelope body and applies rules in a fixed order:
+
+- `contract.match`: the envelope must target the contract being checked (error).
+- `revision.hint`: a declared revision that differs from the contract is a warning, since it may be an older client talking to a newer contract.
+- `field.required`: a missing required field is an error.
+- `field.type`: a present field must match one of the accepted JSON types.
+- `field.enum`: a scalar value must be within the declared enum.
+- `field.unknown`: under a strict contract, an undeclared top-level key is a warning.
+
+Findings are sorted by severity, then field, then rule, so the output is stable across runs.
+
+## Repository layout
+
+```
+protocolarc/
+├── protocolarc/            Python package (stdlib only)
+│   ├── __main__.py         python -m protocolarc entry point
+│   ├── cli.py              validate / diff / matrix / report / describe
+│   ├── model.py            Contract, Envelope, FieldSpec
+│   ├── loader.py           parse contract and envelope documents
+│   ├── validate.py         envelope validation, ordered findings
+│   ├── diff.py             revision comparison and compatibility classes
+│   ├── matrix.py           cross-product matrix and revision chains
+│   └── report.py           markdown / json / text renderers
+├── runtime/                ProtocolArc.Runtime (.NET 9), mirrors the validator
+├── examples/
+│   ├── contracts/          mcp.tool_call 1.0.0 / 1.1.0 / 2.0.0, a2a.task_send
+│   └── fixtures/           mcp_calls.jsonl, a2a_tasks.json
+└── docs/assets/            banner and pipeline diagrams
+```
+
+## Determinism
+
+Field ordering is preserved from the contract, and every derived collection is sorted before rendering, so repeated runs over the same inputs produce byte-identical output. Reports come in `json`, `markdown`, and `text`, and each is a pure function of the matrix it renders.
+
+## Extending it
+
+Add a validation rule by appending a `Finding` inside `validate_envelope` with a rule name, field, severity, and message; the sort key keeps output stable. Add a compatibility rule by extending the `CHANGE_IMPACT` map in `diff.py` and emitting the matching `Change`. Keep the .NET runtime in step with any validation change so both components agree.
+
+# draft note 2
