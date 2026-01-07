@@ -129,3 +129,29 @@ public static class Loader
                 throw new ContractException($"{where}: unknown type '{t}'");
 
         if (types.Count == 0)
+            throw new ContractException($"{where}: 'type' must be non-empty");
+        return types;
+    }
+
+    private static string RequireString(JsonElement doc, string key, string where)
+    {
+        if (!doc.TryGetProperty(key, out var el))
+            throw new ContractException($"{where}: missing required key '{key}'");
+        return el.ValueKind == JsonValueKind.String ? el.GetString()! : el.ToString();
+    }
+
+    private static string ReadString(JsonElement doc, string key, string fallback)
+    {
+        return doc.TryGetProperty(key, out var el) && el.ValueKind == JsonValueKind.String
+            ? el.GetString() ?? fallback
+            : fallback;
+    }
+}
+
+/// <summary>Raised when a document cannot be understood at all.</summary>
+public sealed class ContractException : Exception
+{
+    public ContractException(string message) : base(message) { }
+}
+
+# draft note 4
