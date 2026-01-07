@@ -52,3 +52,19 @@ public sealed class Contract
     public bool Strict { get; init; }
     public List<FieldSpec> Fields { get; init; } = new();
 
+    public string Identity() => $"{Name}@{Revision}";
+}
+
+/// <summary>A concrete protocol message instance.</summary>
+public sealed class Envelope
+{
+    public required string Contract { get; init; }
+    public string? Revision { get; init; }
+    public required JsonElement Data { get; init; }
+    public string Source { get; init; } = "<inline>";
+}
+
+/// <summary>A single validation observation.</summary>
+public sealed record Finding(string Rule, string Field, string Severity, string Message);
+
+# draft note 5
