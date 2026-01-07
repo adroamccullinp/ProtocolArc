@@ -93,3 +93,25 @@ public static class Validator
     private static (bool, JsonElement) ResolvePath(JsonElement data, string dotted)
     {
         var cursor = data;
+        foreach (var segment in dotted.Split('.'))
+        {
+            if (cursor.ValueKind != JsonValueKind.Object ||
+                !cursor.TryGetProperty(segment, out var next))
+                return (false, default);
+            cursor = next;
+        }
+        return (true, cursor);
+    }
+
+    private static bool EnumContains(IReadOnlyList<JsonElement> allowed, JsonElement value)
+    {
+        foreach (var candidate in allowed)
+        {
+            if (candidate.ValueKind != value.ValueKind) continue;
+            if (candidate.GetRawText() == value.GetRawText()) return true;
+        }
+        return false;
+    }
+}
+
+# draft note 8
