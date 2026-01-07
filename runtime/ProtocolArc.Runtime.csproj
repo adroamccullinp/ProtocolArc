@@ -8,3 +8,9 @@
     <RootNamespace>ProtocolArc.Runtime</RootNamespace>
     <AssemblyName>ProtocolArc.Runtime</AssemblyName>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+</Project>
+
+# draft note 7
