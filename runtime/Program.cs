@@ -178,3 +178,36 @@ internal static class Cli
         """;
         const string goodJson = """
         { "contract": "mcp.tool_call",
+          "data": { "method": "tools/call", "params": { "name": "search" } } }
+        """;
+        const string badJson = """
+        { "contract": "mcp.tool_call",
+          "data": { "method": "tools/list", "params": {} } }
+        """;
+
+        using var cdoc = JsonDocument.Parse(contractJson);
+        var contract = Loader.ParseContract(cdoc.RootElement, "<selfcheck>");
+
+        using var gdoc = JsonDocument.Parse(goodJson);
+        var good = Loader.ParseEnvelope(gdoc.RootElement, "good");
+        using var bdoc = JsonDocument.Parse(badJson);
+        var bad = Loader.ParseEnvelope(bdoc.RootElement, "bad");
+
+        var goodFindings = Validator.Validate(contract, good);
+        var badFindings = Validator.Validate(contract, bad);
+
+        bool goodOk = !Validator.HasError(goodFindings);
+        bool badOk = !Validator.HasError(badFindings);
+
+        Console.WriteLine($"selfcheck good={(goodOk ? "PASS" : "FAIL")} bad={(badOk ? "PASS" : "FAIL")}");
+        if (goodOk && !badOk)
+        {
+            Console.WriteLine("selfcheck: OK");
+            return 0;
+        }
+        Console.Error.WriteLine("selfcheck: FAILED");
+        return 1;
+    }
+}
+
+# draft note 6
