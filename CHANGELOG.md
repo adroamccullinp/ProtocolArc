@@ -47,3 +47,10 @@ All notable changes to this project are documented here.
 ### Added
 - First contract format for MCP tool-call envelopes.
 - Minimal validation pass and report skeleton.
+
+## [0.0.1] - 2018-05-14
+
+### Added
+- Prototype: hardcoded envelope shape check for one internal pipeline.
+
+# draft note 1
