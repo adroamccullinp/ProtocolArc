@@ -6,3 +6,10 @@
   "strict": true,
   "fields": [
     { "name": "task_id", "type": "string", "doc": "Unique task identifier." },
+    { "name": "role", "type": "string", "enum": ["user", "agent"], "doc": "Sender role." },
+    { "name": "parts", "type": "array", "doc": "Ordered message parts." },
+    { "name": "session_id", "type": "string", "required": false, "doc": "Optional session grouping." }
+  ]
+}
+
+# draft note 9
