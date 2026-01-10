@@ -7,3 +7,10 @@
   "fields": [
     { "name": "jsonrpc", "type": "string", "enum": ["2.0"], "doc": "JSON-RPC protocol tag." },
     { "name": "id", "type": ["string", "integer"], "doc": "Correlation identifier." },
+    { "name": "method", "type": "string", "enum": ["tools/call"], "doc": "The MCP method being invoked." },
+    { "name": "params.name", "type": "string", "doc": "Tool name to invoke." },
+    { "name": "params.arguments", "type": "object", "required": false, "doc": "Tool argument map." }
+  ]
+}
+
+# draft note 10
