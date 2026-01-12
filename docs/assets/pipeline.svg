@@ -28,3 +28,32 @@
 
     <rect x="488" y="118" width="112" height="48" rx="4" fill="#13233f"/>
     <text x="544" y="140" fill="#f5f3ec" font-size="14" font-weight="600">diff</text>
+    <text x="544" y="158" fill="#8fb0ad" font-size="10">classify change</text>
+
+    <rect x="632" y="118" width="96" height="48" rx="4" fill="#2f6f6a"/>
+    <text x="680" y="140" fill="#ffffff" font-size="14" font-weight="600">report</text>
+    <text x="680" y="158" fill="#cfe0de" font-size="10">matrix</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#3a5a8c" stroke-width="1.6" fill="none">
+    <path d="M150,113 L200,135"/>
+    <path d="M150,167 L200,150"/>
+    <path d="M312,142 L344,142"/>
+    <path d="M456,142 L488,142"/>
+    <path d="M600,142 L632,142"/>
+  </g>
+
+  <!-- compatibility legend from diff.py -->
+  <text x="34" y="220" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="600" fill="#13233f">diff verdict</text>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="12">
+    <rect x="34" y="234" width="14" height="14" fill="#2f6f6a"/>
+    <text x="56" y="245" fill="#13233f">compatible: new accepts everything the old did</text>
+    <rect x="34" y="256" width="14" height="14" fill="#3a5a8c"/>
+    <text x="56" y="267" fill="#13233f">forward: old consumers keep working, new fields optional</text>
+    <rect x="34" y="278" width="14" height="14" fill="#c8792b"/>
+    <text x="56" y="289" fill="#13233f">breaking: a change can reject previously valid envelopes</text>
+  </g>
+</svg>
+
+# draft note 16
