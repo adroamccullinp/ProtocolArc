@@ -12,3 +12,13 @@
   {
     "contract": "a2a.task_send",
     "revision": "1.0.0",
+    "data": {
+      "task_id": "t-002",
+      "role": "supervisor",
+      "parts": [],
+      "priority": "high"
+    }
+  }
+]
+
+# draft note 13
