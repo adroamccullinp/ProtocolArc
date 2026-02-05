@@ -153,3 +153,30 @@ def render_report(matrix: ContractMatrix, fmt: str = "markdown") -> str:
 
 
 def render_validation(results: List[ValidationResult], fmt: str = "text") -> str:
+    """Render a list of validation results (used by the ``validate`` command)."""
+
+    if fmt == "json":
+        payload = [
+            {
+                "envelope": r.envelope,
+                "contract": r.contract,
+                "revision": r.revision,
+                "ok": r.ok,
+                "findings": [
+                    {"rule": f.rule, "field": f.field, "severity": f.severity, "message": f.message}
+                    for f in r.sorted_findings()
+                ],
+            }
+            for r in sorted(results, key=lambda r: (r.contract, r.envelope))
+        ]
+        return json.dumps(payload, indent=2, sort_keys=True)
+
+    lines: List[str] = []
+    for r in sorted(results, key=lambda r: (r.contract, r.envelope)):
+        status = "PASS" if r.ok else "FAIL"
+        lines.append(f"[{status}] {r.contract}@{r.revision} <- {r.envelope}")
+        for f in r.sorted_findings():
+            lines.append(f"    {f.severity.upper():7} {f.rule:22} {f.field}: {f.message}")
+    if not lines:
+        lines.append("no results")
+    return "\n".join(lines) + "\n"
