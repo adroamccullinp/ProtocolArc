@@ -74,3 +74,18 @@ def build_matrix(contracts: List[Contract], envelopes: List[Envelope]) -> Contra
 
     for contract in sorted(contracts, key=lambda c: (c.name, c.revision_tuple())):
         for envelope in envelopes:
+            result: ValidationResult = validate_envelope(contract, envelope)
+            counts = result.counts()
+            matrix.cells.append(
+                Cell(
+                    envelope=envelope.source,
+                    contract=contract.name,
+                    revision=contract.revision,
+                    ok=result.ok,
+                    errors=counts["error"],
+                    warnings=counts["warning"],
+                )
+            )
+
+    matrix.diffs = _revision_chains(contracts)
+    return matrix
