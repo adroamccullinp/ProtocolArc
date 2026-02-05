@@ -178,4 +178,4 @@ def diff_contracts(old: Contract, new: Contract) -> ContractDiff:
                     Change("field.required.relaxed", name, "required -> optional")
                 )
 
-# review note
+    return diff
