@@ -172,4 +172,4 @@ Field ordering is preserved from the contract, and every derived collection is s
 
 Add a validation rule by appending a `Finding` inside `validate_envelope` with a rule name, field, severity, and message; the sort key keeps output stable. Add a compatibility rule by extending the `CHANGE_IMPACT` map in `diff.py` and emitting the matching `Change`. Keep the .NET runtime in step with any validation change so both components agree.
 
-# draft note 18
+# draft note 34
