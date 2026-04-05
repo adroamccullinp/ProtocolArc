@@ -186,4 +186,4 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
-# review note
+    raise SystemExit(main())
