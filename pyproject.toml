@@ -19,4 +19,4 @@ protocolarc = "protocolarc.cli:main"
 where = ["."]
 include = ["protocolarc*"]
 
-# draft note 51
+# draft note 67
