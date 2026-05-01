@@ -67,4 +67,4 @@ public sealed class Envelope
 /// <summary>A single validation observation.</summary>
 public sealed record Finding(string Rule, string Field, string Severity, string Message);
 
-# draft note 53
+# draft note 69
