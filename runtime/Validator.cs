@@ -113,5 +113,3 @@ public static class Validator
         return false;
     }
 }
-
-# draft note 24
