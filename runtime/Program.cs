@@ -209,5 +209,3 @@ internal static class Cli
         return 1;
     }
 }
-
-# draft note 22
