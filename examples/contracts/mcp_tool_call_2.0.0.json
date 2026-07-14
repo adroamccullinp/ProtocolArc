@@ -13,5 +13,3 @@
     { "name": "params.timeout_ms", "type": "integer", "required": false, "doc": "Optional per-call timeout." }
   ]
 }
-
-# draft note 12
