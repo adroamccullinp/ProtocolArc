@@ -11,5 +11,3 @@
     { "name": "session_id", "type": "string", "required": false, "doc": "Optional session grouping." }
   ]
 }
-
-# draft note 9
