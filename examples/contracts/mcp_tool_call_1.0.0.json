@@ -12,5 +12,3 @@
     { "name": "params.arguments", "type": "object", "required": false, "doc": "Tool argument map." }
   ]
 }
-
-# draft note 10
