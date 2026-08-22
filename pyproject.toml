@@ -18,5 +18,3 @@ protocolarc = "protocolarc.cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["protocolarc*"]
-
-# draft note 35
